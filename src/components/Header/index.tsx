@@ -9,7 +9,7 @@ import {
   useAccountContext,
 } from 'contexts/accountContext';
 import React, { useEffect } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { formatAccount } from 'utils/common';
 
 export type RowType = { [k: string]: any }[];
@@ -47,12 +47,27 @@ const Header = () => {
             src: Logo,
           }}
           title={
-            <Link to="/" className="heading">
+            <NavLink to="/" className="heading">
               Project Name Here
-            </Link>
+            </NavLink>
           }
           extra={
             <>
+              <NavLink
+                to="/"
+                className="menuItem"
+                style={({ isActive }) =>
+                  isActive ? { color: 'red' } : { color: 'blue' }
+                }
+              >
+                Store
+              </NavLink>
+              <NavLink to="/governance" className="menuItem">
+                Governance
+              </NavLink>
+              <NavLink to="/ads" className="menuItem">
+                Ads
+              </NavLink>
               <Button
                 loading={accountState.isLoading}
                 type="primary"

@@ -20,4 +20,14 @@
   .ant-divider {
     margin: 0;
   }
+
+  .menuItem{
+    font-size: 20px;
+    margin-left: 30px;
+    margin-right: 10px;
+  }
+
+  a.active {
+    color: $sky-blue-crayola !important;
+  }
 }
