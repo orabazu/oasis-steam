@@ -8,7 +8,7 @@
 
 body {
   background-color: $space-cadet;
-  *:not(.ant-typography) {
+  *:not(.ant-typography, input) {
     color: $white !important;
   }
   .ant-typography{
@@ -20,12 +20,13 @@ body {
 }
 
 .button-color {
-  background-color: $primary-color;
+  background-color: $sky-blue-crayola;
+  background: linear-gradient(180deg, $sky-blue-crayola -8.72%, $violet-blue 120.58%) !important;
   color: $white;
 }
 
 .button-fancy {
-  background: linear-gradient(77deg, #096dd9 -8.72%, #1890ff 120.58%) !important;
+  background: linear-gradient(77deg, $pinkish -8.72%, $violet-blue 120.58%) !important;
   color: $white !important;
 }
 
@@ -45,7 +46,7 @@ body {
   opacity: 1;
   outline: 0px;
   transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
-  height: 32px;
+  height: 40px;
   padding: 0px 16px;
 }
 
@@ -148,7 +149,7 @@ input {
 }
 
 .heading {
-  background: -webkit-linear-gradient(341deg, #096dd9 30.01%, #e97902 70.01%);
+  background: -webkit-linear-gradient(341deg, #096dd9 30.01%, $pinkish 70.01%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-right: 0.25rem;

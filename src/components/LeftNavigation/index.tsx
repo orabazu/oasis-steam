@@ -40,7 +40,7 @@ export const LeftNavigation = () => {
           block
           size="large"
           // loading={accountState.isLoading}
-          type="primary"
+          className="button-fancy"
         >
           {'Connect Wallet'}
         </Button>

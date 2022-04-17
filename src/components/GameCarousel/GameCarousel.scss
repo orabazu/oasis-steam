@@ -21,4 +21,27 @@
     border-radius: 4px;
     cursor: pointer;
   }
+
+  .Action{
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+  }
+
+  .Switch{
+    position: absolute;
+    top: 42px;
+    left: -150px;
+    background: #3d3f57;
+    border-radius: 16px 0 0 16px;
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+
+    button {
+      height: 32px;
+    }
+  }
 }

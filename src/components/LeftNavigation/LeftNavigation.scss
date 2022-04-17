@@ -1,7 +1,9 @@
+@import '../../styles/colors.scss';
 .LeftNavigation{
   .ExchangeCard {
     margin-top: 30px;
     text-align: center;
+    background: linear-gradient(77deg, $cornflower-blue -8.72%, $violet-blue 120.58%) !important;
     svg {
       margin: 10px 0
     }

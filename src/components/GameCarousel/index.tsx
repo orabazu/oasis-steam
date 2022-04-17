@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './GameCarousel.scss';
 
-// import { ChromeOutlined } from '@ant-design/icons';
-import { Col, Row } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Button, Col, Row } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Title from 'antd/lib/typography/Title';
 import img1 from 'assets/sd1.jpg';
@@ -62,6 +62,14 @@ export const GameCarousel = () => {
             Play from your browser, earn up to 5$ a day
           </Text>
         </Row>
+        <div className="Action">
+          <Button type="primary">Play Now</Button>
+        </div>
+        <div className="Switch">
+          <Button shape="circle" type="primary" icon={<LeftOutlined />} />
+          <Text>1 of 5</Text>
+          <Button shape="circle" type="primary" icon={<RightOutlined />} />
+        </div>
       </Col>
     </Row>
   );
