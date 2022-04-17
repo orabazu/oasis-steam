@@ -1,6 +1,7 @@
 @import '../../styles/colors.scss';
 .GameCarousel{
   margin-left: 20px;
+  min-height: 400px;
 
   .GameImage{
     max-width: 100%;
@@ -8,7 +9,11 @@
   }
 
   .GameCarouselLeft {
-    img {  border-radius: 16px 0 0 16px; }
+    img {  
+      border-radius: 16px 0 0 16px;
+      min-height: 400px;
+      object-fit: cover;
+    }
   }
 
   .GameCarouselRight {

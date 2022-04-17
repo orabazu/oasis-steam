@@ -9,9 +9,11 @@ import {
   TrophyOutlined,
 } from '@ant-design/icons';
 import { Button, Card, Input } from 'antd';
+import { useAccountContext } from 'contexts/accountContext';
 import React from 'react';
 
 export const LeftNavigation = () => {
+  const [accountState] = useAccountContext();
   return (
     <div className="LeftNavigation">
       <Card title="Browse Categories" bordered={false}>
@@ -39,10 +41,11 @@ export const LeftNavigation = () => {
         <Button
           block
           size="large"
-          // loading={accountState.isLoading}
+          loading={accountState.isLoading}
           className="button-fancy"
+          onClick={() => {}}
         >
-          {'Connect Wallet'}
+          {accountState.account ? 'Swap' : 'Connect Wallet'}
         </Button>
       </Card>
     </div>

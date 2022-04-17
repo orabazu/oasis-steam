@@ -2,11 +2,15 @@ import './Header.scss';
 
 import { Button, PageHeader } from 'antd';
 import Logo from 'assets/logo.png';
-import { useAccountContext } from 'contexts/accountContext';
-import React from 'react';
+import {
+  changeNetwork,
+  checkIfWalletIsConnected,
+  connectWallet,
+  useAccountContext,
+} from 'contexts/accountContext';
+import React, { useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-
-// import xrpLogo from '../../assets/xrp.png';
+import { formatAccount } from 'utils/common';
 
 export type RowType = { [k: string]: any }[];
 export type HeadersType =
@@ -18,7 +22,20 @@ export type HeadersType =
   | undefined;
 
 const Header = () => {
-  const [accountState] = useAccountContext();
+  const [accountState, accountDispatch] = useAccountContext();
+  let buttonText;
+
+  if (accountState.metamaskNotFound) {
+    buttonText = 'Please install metamask';
+  } else if (accountState.isAppDisabled) {
+    buttonText = 'Switch Network';
+  } else {
+    buttonText = 'Connect Wallet';
+  }
+
+  useEffect(() => {
+    checkIfWalletIsConnected(accountDispatch);
+  }, []);
 
   return (
     <>
@@ -31,17 +48,27 @@ const Header = () => {
           }}
           title={
             <Link to="/" className="heading">
-              Oasis Store
+              Oasis
             </Link>
           }
           extra={
             <>
-              {accountState.account?.balance && (
-                <Button>{accountState.account?.balance} XRP</Button>
-              )}
-
-              <Button loading={accountState.isLoading} type="primary">
-                {'Connect Wallet'}
+              <Button
+                loading={accountState.isLoading}
+                type="primary"
+                onClick={() =>
+                  accountState.isAppDisabled
+                    ? changeNetwork()
+                    : connectWallet(accountDispatch)
+                }
+                disabled={!!accountState?.account || accountState.metamaskNotFound}
+              >
+                {accountState.account
+                  ? `${formatAccount(accountState?.account.address)} | ${
+                      accountState?.account.balance
+                    }`
+                  : buttonText}
+                {/* <img className={"its-eth-babe"} src={ethLogo} alt="button" /> */}
               </Button>
             </>
           }

@@ -1,8 +1,8 @@
-import { SmileOutlined } from '@ant-design/icons';
-import { notification } from 'antd';
+import { ethers } from 'ethers';
 import React, { createContext, useContext, useReducer } from 'react';
-import { postData } from 'utils/http';
 
+// import myEpicNft from '../abi/MyEpicNFT.json';
+// import { CONTRACT_ADDRESS, OPENSEA_LINK } from '../const';
 import {
   AccountAction,
   AccountActionTypes,
@@ -15,6 +15,7 @@ type AccountContextType = [AccountState, React.Dispatch<AccountAction>];
 export type Props = {
   children: React.ReactNode;
 };
+const oasisEmeraldChainId = `0xa515`;
 
 //@ts-ignore
 const AccountContext = createContext<AccountContextType>(null);
@@ -28,103 +29,138 @@ const AccountContextProvider = (props: Props): JSX.Element => {
   );
 };
 
-async function connectWallet(
-  dispatch: React.Dispatch<AccountAction>,
-  importedSeed?: string,
-) {
-  dispatch({ type: AccountActionTypes.SET_IS_ACCOUNT_LOADING, payload: true });
+async function connectWallet(dispatch: React.Dispatch<AccountAction>) {
+  dispatch({ type: AccountActionTypes.SET_ISLOADING, payload: true });
   try {
-    let wallet;
-    if (importedSeed) {
-      wallet = xrpl.Wallet.fromSeed(importedSeed);
-    } else {
-      const accounts = await postData(
-        'https://faucet-nft.ripple.com/accounts',
-        'NFT-Devnet',
-      );
+    const { ethereum } = window;
 
-      console.log(accounts);
-      wallet = accounts.account;
-      notification.open({
-        message:
-          'You successfully generated a new XRP wallet, save this private seed value to recover later. ' +
-          wallet.secret,
-        placement: 'bottomRight',
-        icon: <SmileOutlined style={{ color: '#108ee9' }} />,
-      });
+    if (!ethereum) {
+      alert('Get MetaMask!');
+      return;
     }
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+    const balance = await provider.getBalance(accounts[0]);
 
-    const { address, seed, classicAddress, secret } = wallet;
-    console.log(wallet, seed, secret);
+    const payload = {
+      address: accounts[0],
+      balance: Number(ethers.utils.formatEther(balance)).toFixed(3),
+    };
 
-    let nftNetworkUrl = 'wss://xls20-sandbox.rippletest.net:51233';
-    const client = new xrpl.Client(nftNetworkUrl);
-    await client.connect();
-    let response;
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      try {
-        response = await client.request({
-          command: 'account_info',
-          account: address,
-          ledger_index: 'validated',
-        });
-        console.log(
-          "\n\n----------------Get XRPL NFT Seller's Wallet Account Info----------------",
-        );
-        console.log(JSON.stringify(response, null, 2));
-
-        const payload = {
-          address: response.result.account_data.Account,
-          balance: Number(response.result.account_data.Balance) / 1000000,
-          classicAddress: classicAddress,
-          secret: seed || secret,
-        };
-
-        dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload });
-        dispatch({ type: AccountActionTypes.SET_IS_ACCOUNT_LOADING, payload: false });
-
-        break;
-      } catch (e) {
-        console.error(e);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-      }
-    }
-
-    client.disconnect();
+    dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload });
+    dispatch({ type: AccountActionTypes.SET_ISLOADING, payload: false });
+    // setupEventListener(dispatch);
   } catch (error) {
     console.log(error);
     dispatch({ type: AccountActionTypes.SET_ACCOUNT_FAILURE });
   }
 }
 
-async function getAccountInfo(
-  dispatch: React.Dispatch<AccountAction>,
-  state: AccountState,
-) {
-  const wallet = xrpl.Wallet.fromSeed(state.account?.secret);
-  const client = new xrpl.Client('wss://xls20-sandbox.rippletest.net:51233');
-  await client.connect();
+// const setupEventListener = async (dispatch: React.Dispatch<AccountAction>) => {
+//   try {
+//     const { ethereum } = window;
+//     const provider = new ethers.providers.Web3Provider(ethereum, 'any');
+//     const signer = provider.getSigner();
+//     const connectedContract = new ethers.Contract(
+//       CONTRACT_ADDRESS,
+//       myEpicNft.abi,
+//       signer,
+//     );
+//     connectedContract.on('NewEpicNFTMinted', (from, tokenId) => {
+//       const payload = `${OPENSEA_LINK}${CONTRACT_ADDRESS}/${tokenId.toNumber()}`;
+//       alert(`Hey there! We've minted your NFT and sent it to your wallet.
+//       It may be blank right now. It can take a max of 10 min to show up on OpenSea.`);
+//       dispatch({ type: AccountActionTypes.SET_OPENSEA_LINK, payload });
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-  console.log('\n\n----------------Get Account Info----------------');
-  const response = await client.request({
-    command: 'account_info',
-    account: wallet.address,
-    ledger_index: 'validated',
-  });
+const checkIfWalletIsConnected = async (dispatch: React.Dispatch<AccountAction>) => {
+  const { ethereum } = window;
 
-  const payload = {
-    address: response.result.account_data.Account,
-    balance: Number(response.result.account_data.Balance) / 1000000,
-    classicAddress: wallet.classicAddress,
-    secret: wallet.seed,
-  };
+  if (!ethereum) {
+    console.log('Make sure you have metamask!');
+    dispatch({
+      type: AccountActionTypes.SET_METAMASK_NOT_FOUND,
+      payload: true,
+    });
+    return;
+  } else {
+    dispatch({
+      type: AccountActionTypes.SET_METAMASK_NOT_FOUND,
+      payload: false,
+    });
+    console.log('We have the ethereum object', ethereum);
+    const provider = new ethers.providers.Web3Provider(ethereum, 'any');
+    provider.on('network', (newNetwork, oldNetwork) => {
+      // When a Provider makes its initial connection, it emits a "network"
+      // event with a null oldNetwork along with the newNetwork. So, if the
+      // oldNetwork exists, it represents a changing network
+      if (oldNetwork) {
+        console.log(oldNetwork);
+        window.location.reload();
+      }
+    });
 
-  dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload });
-  dispatch({ type: AccountActionTypes.SET_IS_ACCOUNT_LOADING, payload: false });
-  client.disconnect();
-}
+    ethereum.on('accountsChanged', async () => {
+      // Do something
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      if (!accounts.length) {
+        dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload: null });
+      }
+      console.log('accountsChanged');
+    });
+  }
+
+  const chainId = await ethereum.request({ method: 'eth_chainId' });
+  console.log('Connected to chain ' + chainId);
+
+  if (chainId !== oasisEmeraldChainId) {
+    dispatch({ type: AccountActionTypes.SET_DISABLE_APP, payload: true });
+    dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload: null });
+    return;
+  } else {
+    dispatch({ type: AccountActionTypes.SET_DISABLE_APP, payload: false });
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    const provider = new ethers.providers.Web3Provider(ethereum);
+
+    if (accounts.length !== 0) {
+      const account = accounts[0];
+      const balance = await provider.getBalance(account);
+
+      const payload = {
+        address: account,
+        balance: Number(ethers.utils.formatEther(balance)).toFixed(3),
+      };
+      dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload });
+      // setupEventListener(dispatch);
+    } else {
+      console.log('No authorized account found');
+    }
+  }
+};
+
+const changeNetwork = async () => {
+  try {
+    const { ethereum } = window;
+    await ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: oasisEmeraldChainId }],
+    });
+  } catch (e) {
+    console.error(e);
+  }
+  // String, hex code of the chainId of the Rinkebey test network
+};
 
 const useAccountContext = () => useContext(AccountContext);
 
-export { AccountContextProvider, connectWallet, getAccountInfo, useAccountContext };
+export {
+  AccountContextProvider,
+  changeNetwork,
+  checkIfWalletIsConnected,
+  connectWallet,
+  useAccountContext,
+};

@@ -3,46 +3,40 @@ export type AccountState = {
   isLoading: boolean;
   account: {
     address: string;
-    balance: number;
-    classicAddress: string;
-    secret: string;
+    balance: string;
   } | null;
-  isNextButtonDisabled: boolean;
-  nextButtonTooltipText: string;
-  lastMintedNft?: string;
+  openSeaLinks: string[];
+  isAppDisabled: boolean;
+  metamaskNotFound: boolean;
 };
 
 const initialState: AccountState = {
   account: null,
   isLoading: false,
-  isNextButtonDisabled: false,
-  nextButtonTooltipText: 'Please connect wallet first',
+  openSeaLinks: [],
+  isAppDisabled: true,
+  metamaskNotFound: false,
 };
 
 export enum AccountActionTypes {
   SET_ACCOUNT = 'SET_ACCOUNT',
-  SET_IS_ACCOUNT_LOADING = 'SET_IS_ACCOUNT_LOADING',
+  SET_ISLOADING = 'SET_ISLOADING',
   SET_ACCOUNT_FAILURE = 'SET_ACCOUNT_FAILURE',
-  SET_IS_NEXT_BUTTON_DISABLED = 'SET_IS_NEXT_BUTTON_DISABLED',
-  SET_NEXT_BUTTON_TOOLTIP_TEXT = 'SET_NEXT_BUTTON_TOOLTIP_TEXT',
-  SET_LAST_MINTED_NFT = 'SET_LAST_MINTED_NFT',
+  SET_DISABLE_APP = 'SET_DISABLE_APP',
+  SET_OPENSEA_LINK = 'SET_OPENSEA_LINK',
+  SET_METAMASK_NOT_FOUND = 'SET_METAMASK_NOT_FOUND',
 }
 
 export type AccountAction =
   | {
       type: AccountActionTypes.SET_ACCOUNT;
-      payload: {
-        address: string;
-        balance: number;
-        classicAddress: string;
-        secret: string;
-      } | null;
+      payload: { address: string; balance: string } | null;
     }
-  | { type: AccountActionTypes.SET_IS_ACCOUNT_LOADING; payload: boolean }
+  | { type: AccountActionTypes.SET_ISLOADING; payload: boolean }
   | { type: AccountActionTypes.SET_ACCOUNT_FAILURE }
-  | { type: AccountActionTypes.SET_IS_NEXT_BUTTON_DISABLED; payload: boolean }
-  | { type: AccountActionTypes.SET_NEXT_BUTTON_TOOLTIP_TEXT; payload: string }
-  | { type: AccountActionTypes.SET_LAST_MINTED_NFT; payload: string };
+  | { type: AccountActionTypes.SET_DISABLE_APP; payload: boolean }
+  | { type: AccountActionTypes.SET_OPENSEA_LINK; payload: string }
+  | { type: AccountActionTypes.SET_METAMASK_NOT_FOUND; payload: boolean };
 
 const reducer = (state: AccountState, action: AccountAction): AccountState => {
   switch (action.type) {
@@ -56,25 +50,25 @@ const reducer = (state: AccountState, action: AccountAction): AccountState => {
         ...state,
         account: null,
       };
-    case AccountActionTypes.SET_IS_ACCOUNT_LOADING:
+    case AccountActionTypes.SET_ISLOADING:
       return {
         ...state,
         isLoading: action.payload,
       };
-    case AccountActionTypes.SET_IS_NEXT_BUTTON_DISABLED:
+    case AccountActionTypes.SET_DISABLE_APP:
       return {
         ...state,
-        isNextButtonDisabled: action.payload,
+        isAppDisabled: action.payload,
       };
-    case AccountActionTypes.SET_LAST_MINTED_NFT:
+    case AccountActionTypes.SET_METAMASK_NOT_FOUND:
       return {
         ...state,
-        lastMintedNft: action.payload,
+        metamaskNotFound: action.payload,
       };
-    case AccountActionTypes.SET_NEXT_BUTTON_TOOLTIP_TEXT:
+    case AccountActionTypes.SET_OPENSEA_LINK:
       return {
         ...state,
-        nextButtonTooltipText: action.payload,
+        openSeaLinks: [...state.openSeaLinks, action.payload],
       };
     default:
       return state;
