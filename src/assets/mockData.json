@@ -1,0 +1,202 @@
+[
+  {
+    "restaurantId": "b82b8d5e-9e3b-4cc0-9013-24f24cd17aef",
+    "satisfaction": 5,
+    "reception": 2,
+    "service": 5,
+    "waitingTime": 3,
+    "foodQuality": 1
+  },
+  {
+    "restaurantId": "4dd676fe-9ec5-4191-8787-706cec0d2dc6",
+    "satisfaction": 10,
+    "reception": 2,
+    "service": 5,
+    "waitingTime": 2,
+    "foodQuality": 2
+  },
+  {
+    "restaurantId": "bf125088-e746-4ab8-9ad8-74d77d0ebb09",
+    "satisfaction": 9,
+    "reception": 2,
+    "service": 1,
+    "waitingTime": 3,
+    "foodQuality": 3
+  },
+  {
+    "restaurantId": "627a622e-a908-4ce2-8fbd-1ce73469175e",
+    "satisfaction": 2,
+    "reception": 9,
+    "service": 8,
+    "waitingTime": 5,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "5699d89e-8e9a-4cd5-acd0-aa234cac5ee6",
+    "satisfaction": 8,
+    "reception": 1,
+    "service": 8,
+    "waitingTime": 8,
+    "foodQuality": 1
+  },
+  {
+    "restaurantId": "a1e45f62-89b8-4b84-a1a2-6b4e562c09c5",
+    "satisfaction": 7,
+    "reception": 8,
+    "service": 9,
+    "waitingTime": 8,
+    "foodQuality": 6
+  },
+  {
+    "restaurantId": "57bdfd63-ca9a-4fe5-b1d6-449a18cb0eae",
+    "satisfaction": 2,
+    "reception": 6,
+    "service": 6,
+    "waitingTime": 7,
+    "foodQuality": 1
+  },
+  {
+    "restaurantId": "a74a6961-8974-4ab1-bd89-6fba733579ab",
+    "satisfaction": 2,
+    "reception": 5,
+    "service": 6,
+    "waitingTime": 6,
+    "foodQuality": 2
+  },
+  {
+    "restaurantId": "e5b82e5d-56a6-4cee-a8b8-6b621f3e1c8b",
+    "satisfaction": 4,
+    "reception": 5,
+    "service": 4,
+    "waitingTime": 6,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "83cad8a0-90f8-4ae9-8291-e64fe4398b0b",
+    "satisfaction": 2,
+    "reception": 6,
+    "service": 2,
+    "waitingTime": 1,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "db340848-af09-4a89-afea-5ab1de260666",
+    "satisfaction": 6,
+    "reception": 2,
+    "service": 2,
+    "waitingTime": 6,
+    "foodQuality": 2
+  },
+  {
+    "restaurantId": "09c97b44-585b-4896-8a17-485d7c5e4fe2",
+    "satisfaction": 4,
+    "reception": 6,
+    "service": 6,
+    "waitingTime": 5,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "e1fea696-b320-4908-aec1-d491351e4970",
+    "satisfaction": 7,
+    "reception": 8,
+    "service": 10,
+    "waitingTime": 10,
+    "foodQuality": 9
+  },
+  {
+    "restaurantId": "37f2252b-d953-494f-9589-f10b8cfc2a67",
+    "satisfaction": 5,
+    "reception": 2,
+    "service": 8,
+    "waitingTime": 4,
+    "foodQuality": 4
+  },
+  {
+    "restaurantId": "7715f355-c76e-4bab-a224-05e12b387a10",
+    "satisfaction": 9,
+    "reception": 8,
+    "service": 2,
+    "waitingTime": 6,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "0c581d71-3eaa-4761-af39-4257dd0440e8",
+    "satisfaction": 10,
+    "reception": 9,
+    "service": 7,
+    "waitingTime": 10,
+    "foodQuality": 2
+  },
+  {
+    "restaurantId": "371c15e5-6534-4c28-b018-13cf7c59f273",
+    "satisfaction": 3,
+    "reception": 7,
+    "service": 1,
+    "waitingTime": 4,
+    "foodQuality": 5
+  },
+  {
+    "restaurantId": "06bc8704-123b-4ce3-a8e3-d8ec6683c7f5",
+    "satisfaction": 4,
+    "reception": 3,
+    "service": 7,
+    "waitingTime": 5,
+    "foodQuality": 2
+  },
+  {
+    "restaurantId": "d882c459-b43f-46bf-b779-a250caab2315",
+    "satisfaction": 5,
+    "reception": 10,
+    "service": 3,
+    "waitingTime": 2,
+    "foodQuality": 4
+  },
+  {
+    "restaurantId": "ccb2ecd7-3549-4965-81c7-e1a5e98f0075",
+    "satisfaction": 7,
+    "reception": 2,
+    "service": 4,
+    "waitingTime": 10,
+    "foodQuality": 4
+  },
+  {
+    "restaurantId": "218d78cb-f79b-4992-a52f-ef8fab2615ed",
+    "satisfaction": 3,
+    "reception": 10,
+    "service": 10,
+    "waitingTime": 7,
+    "foodQuality": 1
+  },
+  {
+    "restaurantId": "1e2d0f7f-7a51-4da1-a167-a4ec1f5113ee",
+    "satisfaction": 7,
+    "reception": 1,
+    "service": 4,
+    "waitingTime": 3,
+    "foodQuality": 6
+  },
+  {
+    "restaurantId": "e4adc90b-4f69-4c63-ac2b-d51fe2a02764",
+    "satisfaction": 8,
+    "reception": 8,
+    "service": 6,
+    "waitingTime": 1,
+    "foodQuality": 8
+  },
+  {
+    "restaurantId": "568bdf12-a32f-4d20-8cc1-c70984fe6766",
+    "satisfaction": 10,
+    "reception": 8,
+    "service": 8,
+    "waitingTime": 5,
+    "foodQuality": 10
+  },
+  {
+    "restaurantId": "39a08025-3ffd-4730-b3d9-eff3bd1aafd3",
+    "satisfaction": 10,
+    "reception": 5,
+    "service": 1,
+    "waitingTime": 3,
+    "foodQuality": 8
+  }
+]
