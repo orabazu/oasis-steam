@@ -47,19 +47,11 @@ const Header = () => {
             src: Logo,
           }}
           title={
-            <NavLink to="/" className="heading">
-              Project Name Here
-            </NavLink>
-          }
-          extra={
             <>
-              <NavLink
-                to="/"
-                className="menuItem"
-                style={({ isActive }) =>
-                  isActive ? { color: 'red' } : { color: 'blue' }
-                }
-              >
+              <NavLink to="/" className="heading">
+                Project Name Here
+              </NavLink>
+              <NavLink to="/" className="menuItem">
                 Store
               </NavLink>
               <NavLink to="/governance" className="menuItem">
@@ -68,6 +60,10 @@ const Header = () => {
               <NavLink to="/ads" className="menuItem">
                 Ads
               </NavLink>
+            </>
+          }
+          extra={
+            <>
               <Button
                 loading={accountState.isLoading}
                 type="primary"
