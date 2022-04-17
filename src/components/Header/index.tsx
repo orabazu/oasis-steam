@@ -48,7 +48,7 @@ const Header = () => {
           }}
           title={
             <Link to="/" className="heading">
-              Oasis
+              Project Name Here
             </Link>
           }
           extra={
