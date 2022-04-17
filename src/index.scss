@@ -8,8 +8,14 @@
 
 body {
   background-color: $space-cadet;
-  * {
+  *:not(.ant-typography) {
     color: $white !important;
+  }
+  .ant-typography{
+    color: $white;
+  }
+  .ant-typography.ant-typography-secondary{
+    color: #8a8a8a;
   }
 }
 
