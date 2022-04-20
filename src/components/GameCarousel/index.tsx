@@ -13,8 +13,56 @@ import React, { useState } from 'react';
 
 export const GameCarousel = () => {
   const [mainImage, setMainImage] = useState(img1);
+
+  const games = [
+    {
+      category: 'Top Played',
+      name: 'Stardew Valley',
+      description: 'Play from your browser, earn up to 5$ a day',
+      heroImage: img1,
+      images: [img1, img2, img3, img4],
+    },
+  ];
+
   return (
     <Row className="GameCarousel">
+      {games.map((game) => {
+        <>
+          <Col span={18} className="GameCarouselLeft">
+            <img src={game.heroImage} className="GameImage"></img>
+          </Col>
+          <Col span={6} className="GameCarouselRight">
+            <Text type="secondary">{game.category}</Text>
+            <Title level={2} style={{ margin: `0 0 20px 0` }}>
+              {game.name}
+            </Title>
+            <Row gutter={[16, 24]}>
+              {game.images.map((img, idx) => (
+                <Col span={12} key={idx}>
+                  <img
+                    src={img}
+                    className="GameImage imageThumb"
+                    onMouseOver={() => setMainImage(img)}
+                    onFocus={() => setMainImage(img)}
+                  ></img>
+                </Col>
+              ))}
+            </Row>
+            <Row>
+              <Text style={{ marginTop: 10 }}>{game.description}</Text>
+            </Row>
+            <div className="Action">
+              <Button type="primary">Play Now</Button>
+            </div>
+            <div className="Switch">
+              <Button shape="circle" type="primary" icon={<LeftOutlined />} />
+              <Text>1 of {games.length}</Text>
+              <Button shape="circle" type="primary" icon={<RightOutlined />} />
+            </div>
+          </Col>
+        </>;
+      })}
+
       <Col span={18} className="GameCarouselLeft">
         <img src={mainImage} className="GameImage"></img>
       </Col>
