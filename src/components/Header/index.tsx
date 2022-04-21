@@ -49,7 +49,7 @@ const Header = () => {
           title={
             <>
               <NavLink to="/" className="heading">
-                Project Name Here
+                TILE
               </NavLink>
               <NavLink to="/" className="menuItem">
                 Store

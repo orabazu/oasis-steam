@@ -41,7 +41,7 @@ export const Footer = () => {
       <Button icon={<PlusOutlined />} type="primary" onClick={mintAdvertiserToken}>
         Call contract
       </Button>
-      <Text>2022 © Amazing Team Name</Text>
+      <Text>2022 © Tile Token</Text>
       <Button type="text" icon={<SmileFilled />}>
         Need Help?
       </Button>
