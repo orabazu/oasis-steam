@@ -1,4 +1,4 @@
-import './style.scss';
+import './Dashboard.scss';
 
 import { Col, Row } from 'antd';
 import { LeftNavigation } from 'components/LeftNavigation';

@@ -1,21 +1,21 @@
 /* eslint-disable jsx-a11y/alt-text */
-import './Governance.scss';
+import './Advertisement.scss';
 
 import { Button, Row } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Title from 'antd/lib/typography/Title';
 import React from 'react';
 
-import Logo from '../../assets/tile3.png';
+import Logo from '../../assets/tile2.png';
 
-const Governance = () => {
+const Advertisement = () => {
   return (
-    <Row className="Governance">
-      <div className="GovernanceCard">
+    <Row className="Advertisement">
+      <div className="AdvertisementCard">
         <Title level={2} style={{ margin: `0 0 20px 0` }}>
-          Governance Token
+          Advertiser Token
         </Title>
-        <Text>Governance tokens allow a user to vote on proposed ads for games.</Text>
+        <Text>Advertisement tokens allow you to put ads in games.</Text>
         <img src={Logo}></img>
         <Button
           block
@@ -31,4 +31,4 @@ const Governance = () => {
   );
 };
 
-export default Governance;
+export default Advertisement;
