@@ -1,3 +1,4 @@
+import { notification } from 'antd';
 import { ethers } from 'ethers';
 import React, { createContext, useContext, useReducer } from 'react';
 
@@ -50,9 +51,15 @@ async function connectWallet(dispatch: React.Dispatch<AccountAction>) {
     dispatch({ type: AccountActionTypes.SET_ACCOUNT, payload });
     dispatch({ type: AccountActionTypes.SET_ISLOADING, payload: false });
     // setupEventListener(dispatch);
-  } catch (error) {
-    console.log(error);
+  } catch (e: any) {
+    console.log(e);
+    notification.error({
+      message: 'Wallet connection Error',
+      description: e.message,
+      duration: 20,
+    });
     dispatch({ type: AccountActionTypes.SET_ACCOUNT_FAILURE });
+    dispatch({ type: AccountActionTypes.SET_ISLOADING, payload: false });
   }
 }
 
@@ -149,8 +156,12 @@ const changeNetwork = async () => {
       method: 'wallet_switchEthereumChain',
       params: [{ chainId: oasisEmeraldChainId }],
     });
-  } catch (e) {
+  } catch (e: any) {
     console.error(e);
+    notification.error({
+      message: 'Change Network Error',
+      description: e.message,
+    });
   }
   // String, hex code of the chainId of the Rinkebey test network
 };

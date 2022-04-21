@@ -8,7 +8,7 @@
 
 body {
   background-color: $space-cadet;
-  *:not(.ant-typography, input) {
+  *:not(.ant-typography, input, .ant-notification *) {
     color: $white !important;
   }
   .ant-typography{
@@ -17,6 +17,10 @@ body {
   .ant-typography.ant-typography-secondary{
     color: #8a8a8a;
   }
+}
+
+.ant-notification-notice-description {
+  color: $black!important
 }
 
 .button-color {
