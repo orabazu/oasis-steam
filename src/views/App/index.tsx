@@ -3,7 +3,9 @@ import { Footer } from 'components/Footer';
 import Header from 'components/Header';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Advertisement from 'views/Advertisement';
 import Dashboard from 'views/Dashboard';
+import Governance from 'views/Governance';
 
 import { AccountContextProvider } from '../../contexts/accountContext';
 
@@ -15,8 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Header />}>
               <Route index element={<Dashboard />} />
-              {/* <Route path="generate-report" element={<ReportGenerator />} /> */}
-              {/* <Route path="marketplace" element={<MarketPlace />} /> */}
+              <Route path="governance" element={<Governance />} />
+              <Route path="ads" element={<Advertisement />} />
             </Route>
             <Route
               path="*"
