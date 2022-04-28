@@ -12,9 +12,9 @@ function mintAd(string calldata _metadataURI,uint256 _deadline) public
 function vote(uint256 id,bool _vote) public //id is the token id of the ad to vote for. set _vote to true for yes and false for no
 function makeAdPayment(uint256 id) public payable //User must pay for ad to activate it after vote. current price for Ad is 1 rose. 
 function getAdState(uint256 id) public view returns (AdState) // 0 Not a valid ad,  2 Voting in progress, 3 Accepted, 4 Rejected, 5 Active
-function claimTile(uint256 amount) public //Claim tile points  amount in WEI
-function mintGovernorNFT(address to) public //Mint Governor NFT.  to is the address to send token
-function swapTileForRose(uint256 amount) public //amount in WEI.  must approve spending of tile before calling this function. contract must have enough rose to swap for tile else this will fail
++function claimTile(uint256 amount) public //Claim tile points  amount in WEI
++(has to mint by owner-dominic)function mintGovernorNFT(address to) public //Mint Governor NFT.  to is the address to send token
++(not enough liqudity err)function swapTileForRose(uint256 amount) public //amount in WEI.  must approve spending of tile before calling this function. contract must have enough rose to swap for tile else this will fail
 function buyTile() public payable //Purchase tile tokens
 
 

@@ -142,8 +142,15 @@ body {
   border: 3px solid $light-gray;
 }
 
-input {
+input, .ant-input-number {
   border-radius: 14px !important;
+}
+
+.ant-input-number{
+  width: 100%;
+  * { 
+    color: $black;
+  }
 }
 
 .modal-action {
