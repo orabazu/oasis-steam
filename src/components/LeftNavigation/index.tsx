@@ -13,7 +13,7 @@ import { Button, Card, InputNumber } from 'antd';
 import { useAccountContext } from 'contexts/accountContext';
 import { ethers } from 'ethers';
 import React, { useState } from 'react';
-import { handleError } from 'utils/common';
+import { handleError, handleSuccess } from 'utils/common';
 
 export const LeftNavigation = () => {
   const [accountState] = useAccountContext();
@@ -38,6 +38,7 @@ export const LeftNavigation = () => {
         );
 
         await nftTxn.wait();
+        handleSuccess(nftTxn);
         console.log(nftTxn);
       }
     } catch (error: any) {

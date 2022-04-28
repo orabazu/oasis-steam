@@ -6,7 +6,7 @@ import { Button } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { ethers } from 'ethers';
 import React from 'react';
-import { handleError } from 'utils/common';
+import { handleError, handleSuccess } from 'utils/common';
 
 export const Footer = () => {
   const mintAdvertiserToken = async () => {
@@ -26,6 +26,7 @@ export const Footer = () => {
       });
 
       await nftTxn.wait();
+      handleSuccess(nftTxn);
 
       console.log(nftTxn);
     } catch (error) {

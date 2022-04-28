@@ -21,3 +21,19 @@ export const handleError = (error: any) => {
     duration: 7,
   });
 };
+
+export const handleSuccess = (success: any) => {
+  notification.success({
+    message: 'Success',
+    description: (
+      <a
+        href={`https://testnet.oasisscan.com/paratimes/transactions/${success.hash}?runtime=00000000000000000000000000000000000000000000000072c8215e60d5bca7`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Check on oasis scan
+      </a>
+    ),
+    duration: 7,
+  });
+};

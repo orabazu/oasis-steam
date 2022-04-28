@@ -8,7 +8,7 @@ import Title from 'antd/lib/typography/Title';
 import { useAccountContext } from 'contexts/accountContext';
 import { ethers } from 'ethers';
 import React from 'react';
-import { handleError } from 'utils/common';
+import { handleError, handleSuccess } from 'utils/common';
 
 import Logo from '../../assets/tile3.png';
 
@@ -33,6 +33,7 @@ const Governance = () => {
       // });
 
       await nftTxn.wait();
+      handleSuccess(nftTxn);
 
       console.log(nftTxn);
     } catch (error: any) {
@@ -61,6 +62,7 @@ const Governance = () => {
       // });
 
       await nftTxn.wait();
+      handleSuccess(nftTxn);
 
       console.log(nftTxn);
     } catch (error: any) {
@@ -92,7 +94,7 @@ const Governance = () => {
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
             Claim TILE
           </Title>
-          <Text>Claim 1 tile tokens for testing</Text>
+          <Text style={{ paddingBottom: 10 }}>Claim 1 tile tokens for testing</Text>
           <Button
             block
             size="large"
