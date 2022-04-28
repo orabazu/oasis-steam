@@ -26,10 +26,15 @@ export const LeftNavigation = () => {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
+      // console.log(connectedContract);
+      // await connectedContract.approve(
+      //   contractAddress,
+      //   ethers.utils.parseUnits('0.0001', 'ether'),
+      // );
 
       if (tileAmount) {
         let nftTxn = await connectedContract.swapTileForRose(
-          ethers.utils.parseUnits(tileAmount?.toString(), 'ether'),
+          ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
         );
 
         await nftTxn.wait();

@@ -11,4 +11,5 @@ export const contractABI = [
   'function mintGovernorNFT(address to) public', //Mint Governor NFT.  to is the address to send token
   'function swapTileForRose(uint256 amount) public', //amount in WEI.  must approve spending of tile before calling this 'function. contract must have enough rose to swap for tile else this will fail
   'function buyTile() public payable', //Purchase tile tokens
+  'function approve(address _spender, uint256 _value) public returns (bool success)', // fake approve
 ];

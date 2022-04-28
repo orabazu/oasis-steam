@@ -1,11 +1,12 @@
 import './Footer.scss';
 
-import { PlusOutlined, SmileFilled } from '@ant-design/icons';
+import { DollarCircleFilled, SmileFilled } from '@ant-design/icons';
 import { contractABI, contractAddress } from 'abi/contract';
 import { Button } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { ethers } from 'ethers';
 import React from 'react';
+import { handleError } from 'utils/common';
 
 export const Footer = () => {
   const mintAdvertiserToken = async () => {
@@ -20,7 +21,7 @@ export const Footer = () => {
       //   console.log(res);
       // });
 
-      let nftTxn = await connectedContract.mintNFT('put ipfs link later on', {
+      let nftTxn = await connectedContract.buyTile({
         value: ethers.utils.parseEther('1.0'),
       });
 
@@ -28,14 +29,14 @@ export const Footer = () => {
 
       console.log(nftTxn);
     } catch (error) {
-      console.log(error);
+      handleError(error);
     }
   };
 
   return (
     <div className="Footer">
-      <Button icon={<PlusOutlined />} type="primary" onClick={mintAdvertiserToken}>
-        Call contract
+      <Button icon={<DollarCircleFilled />} type="primary" onClick={mintAdvertiserToken}>
+        Buy Tile
       </Button>
       <Text>2022 © Tile Token</Text>
       <Button type="text" icon={<SmileFilled />}>
