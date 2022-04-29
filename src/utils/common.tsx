@@ -23,6 +23,7 @@ export const handleError = (error: any) => {
 };
 
 export const handleSuccess = (success: any) => {
+  console.log(success);
   notification.success({
     message: 'Success',
     description: (
