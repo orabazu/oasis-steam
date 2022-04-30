@@ -2,8 +2,6 @@ import { notification } from 'antd';
 import { ethers } from 'ethers';
 import React, { createContext, useContext, useReducer } from 'react';
 
-// import myEpicNft from '../abi/MyEpicNFT.json';
-// import { CONTRACT_ADDRESS, OPENSEA_LINK } from '../const';
 import {
   AccountAction,
   AccountActionTypes,

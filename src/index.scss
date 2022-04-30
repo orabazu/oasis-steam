@@ -8,7 +8,7 @@
 
 body {
   background-color: $space-cadet;
-  *:not(.ant-typography, input, .ant-notification *) {
+  *:not(.ant-typography, input, .ant-notification *, .ant-modal-content *){
     color: $white !important;
   }
   .ant-typography{
@@ -17,7 +17,12 @@ body {
   .ant-typography.ant-typography-secondary{
     color: #8a8a8a;
   }
+  .ant-modal-header *, .ant-modal-body *, .ant-modal-close-icon, .ant-modal-close-icon svg {
+    color: $black !important
+  }
 }
+
+
 
 .ant-notification-notice-description {
   color: $black!important
