@@ -8,7 +8,7 @@ I found out about Vite and I wanted to have a boilerplate for the technologies t
 
 ## Installation
 
-Clone the repo and run `yarn install`
+Clone the repository and run `yarn install`
 
 ## Start
 
