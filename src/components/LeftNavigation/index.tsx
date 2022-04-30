@@ -33,13 +33,13 @@ export const LeftNavigation = () => {
       // );
 
       if (tileAmount) {
-        let nftTxn = await connectedContract.swapTileForRose(
+        let transaction = await connectedContract.swapTileForRose(
           ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
         );
 
-        await nftTxn.wait();
-        handleSuccess(nftTxn);
-        console.log(nftTxn);
+        await transaction.wait();
+        handleSuccess(transaction);
+        console.log(transaction);
       }
     } catch (error: any) {
       handleError(error);

@@ -17,18 +17,14 @@ export const Footer = () => {
       const signer = provider.getSigner();
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-      // connectedContract.mintNFT('put ipfs link later on').then((res: any) => {
-      //   console.log(res);
-      // });
-
-      let nftTxn = await connectedContract.buyTile({
+      const transaction = await connectedContract.buyTile({
         value: ethers.utils.parseEther('1.0'),
       });
 
-      await nftTxn.wait();
-      handleSuccess(nftTxn);
+      await transaction.wait();
+      handleSuccess(transaction);
 
-      console.log(nftTxn);
+      console.log(transaction);
     } catch (error) {
       handleError(error);
     }

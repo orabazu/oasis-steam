@@ -1,17 +1,24 @@
 @import '../../styles/colors.scss';
 .Advertisement{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // margin: 20px 0;
 
-  .AdvertisementCard{
-    min-height: 500px;
+  padding: 20px 30px ;
+
+  .AdvertisementCard {
+    // min-height: 500px;
     padding: 30px 20px;
     background: $independence;
     border-radius: 16px;
-    display: flex;
-    flex-direction: column;
+
+    input {
+      height: 40px;
+    }
+    > * {
+      margin-bottom: 10px;
+    }
 
     img {
       max-width: 100%;
@@ -20,6 +27,20 @@
       min-height: 400px;
       object-fit: cover;
       margin: 20px 0;
+    }
+
+  }
+
+  .VoteCard {
+    padding: 20px 20px;
+    margin-bottom: 20px;
+    background: $independence;
+    border-radius: 16px;
+
+    .voteButton{
+      display: flex;
+      justify-content: end;
+      gap: 10px;
     }
   }
 }

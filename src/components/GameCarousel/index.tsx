@@ -11,10 +11,6 @@ import aImg3 from 'assets/aim-trainer/aimg3.png';
 import mgImg1 from 'assets/memory-game/img1.png';
 import mgImg2 from 'assets/memory-game/img2.png';
 import mgImg3 from 'assets/memory-game/img3.png';
-import dsImg1 from 'assets/sdw/sd1.jpg';
-import dsImg2 from 'assets/sdw/sd2.jpg';
-import dsImg3 from 'assets/sdw/sd3.jpg';
-import dsImg4 from 'assets/sdw/sd4.jpg';
 import wImg1 from 'assets/whell-fortune/wimg1.png';
 import wImg2 from 'assets/whell-fortune/wimg2.png';
 import wImg3 from 'assets/whell-fortune/wimg3.png';
@@ -22,14 +18,6 @@ import wImg4 from 'assets/whell-fortune/wimg4.png';
 import React, { useEffect, useState } from 'react';
 
 const games = [
-  {
-    category: 'Top Played',
-    name: 'Stardew Valley',
-    description: 'Play from your browser, earn up to 5$ a day',
-    heroImage: dsImg1,
-    images: [dsImg1, dsImg2, dsImg3, dsImg4],
-    link: '',
-  },
   {
     category: 'Top Played',
     name: 'Memory Game',
