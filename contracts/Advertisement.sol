@@ -17,27 +17,34 @@ contract AdvertisementNFT is  ERC721URIStorage, Ownable {
     
 	using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
-	uint256 price = 1*10**18;
+    address minter;
    
 	 
 	 
 	 mapping (uint256 => string) _uri;
 	 
-    constructor() ERC721("Tile Advertisement NFT", "TAD") 	 {
+    constructor(address _minter) ERC721("Tile Advertisement NFT", "TAD") 	 {
 		
+	     minter = _minter;
 	
 
 	}
  
 
+/**
+   * @dev Function allows event owner or subscribers to mint video from event stream
+   * @param _metadataURI metadata URI 
+   **/
     
-    function mintNFT(string calldata _metadataURI ) external payable 
+    function mintNFT(string calldata _metadataURI,address to ) external  returns(uint256)
    {
-      require(msg.value == price, "Not Enough Sent to Contract" ); 
-	  _safeMint(msg.sender, _tokenIdCounter.current());
+	  require(msg.sender == minter, "Unauthorized Minter");
+      	   _tokenIdCounter.increment();
+
+	  _safeMint(to, _tokenIdCounter.current());
 	   _uri[_tokenIdCounter.current()] = _metadataURI;
        
-	   _tokenIdCounter.increment();
+       return _tokenIdCounter.current();
    
    }   
    
@@ -55,12 +62,7 @@ contract AdvertisementNFT is  ERC721URIStorage, Ownable {
     }
  
  
- function withdrawAll() external onlyOwner {
-     payable(msg.sender).transfer(address(this).balance);
-    }
-
-function setPrice(uint256 _price) external onlyOwner{
-  require(price > 0 ,"Price must be greater than zero");
-  price = _price*10**18;  
-}
+function setMinter(address _minter) external onlyOwner{
+    minter = _minter;
+  }
 }

@@ -7,13 +7,13 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 /**
- * @title Tile Advertiser Contract
- * @dev Main contract for Advertisers NFT 
+ * @title Tile Governor Contract
+ * @dev Main contract for Governors NFT 
  * @author Dominic Leon Hackett
  */
 
 
-contract AdvertiserNFT is  ERC721URIStorage, Ownable {
+contract GovernorsNFT is  ERC721URIStorage, Ownable {
     
  
 using Counters for Counters.Counter;
@@ -23,7 +23,7 @@ using Counters for Counters.Counter;
 	 
 	 string _uri;
 	 
-    constructor(address _minter,string memory _metadataURI) ERC721("Tile Advertiser NFT", "TADV") 	 {
+    constructor(address _minter,string memory _metadataURI) ERC721("Tile Governor NFT", "TGVN") 	 {
 		minter = _minter;
         _uri = _metadataURI;
 	
@@ -34,10 +34,12 @@ using Counters for Counters.Counter;
     
     function mintNFT(address to) external  
    {
+     	   
+      _tokenIdCounter.increment();
+  
 	  require(msg.sender == minter, "Unauthorized Minter");
       _safeMint(to, _tokenIdCounter.current());
 	   
-	   _tokenIdCounter.increment();
    
    }   
    

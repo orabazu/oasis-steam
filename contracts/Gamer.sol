@@ -17,27 +17,27 @@ contract Gamer is  ERC721URIStorage, Ownable {
     
 	using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
-	uint256 price = 1*10**18;
-   
+    address minter;
 	 
 	 
-	 mapping (uint256 => string) _uri;
+	 string _uri;
 	 
-    constructor() ERC721("Tile GAMER NFT", "TGMR") 	 {
-		
+    constructor(address _minter,string memory _metadataURI) ERC721("Tile GAMER NFT", "TGMR") 	 {
+		minter = _minter;
+        _uri = _metadataURI;
 	
 
 	}
  
 
     
-    function mintNFT(string calldata _metadataURI ) external payable 
+    function mintNFT(address to) external  
    {
-      require(msg.value == price, "Not Enough Sent to Contract" ); 
-	  _safeMint(msg.sender, _tokenIdCounter.current());
-	   _uri[_tokenIdCounter.current()] = _metadataURI;
-       
+	  require(msg.sender == minter, "Unauthorized Minter");
 	   _tokenIdCounter.increment();
+
+      _safeMint(to, _tokenIdCounter.current());
+	   
    
    }   
    
@@ -50,17 +50,19 @@ contract Gamer is  ERC721URIStorage, Ownable {
         override(ERC721URIStorage)
         returns (string memory)
     {
-        return string(abi.encodePacked( _uri[tokenId]));
+        return string(abi.encodePacked( _uri));
 
     }
  
  
- function withdrawAll() external onlyOwner {
-     payable(msg.sender).transfer(address(this).balance);
-    }
+function setMinter(address _minter) external onlyOwner{
+    minter = _minter;
+  }
 
-function setPrice(uint256 _price) external onlyOwner{
-  require(price > 0 ,"Price must be greater than zero");
-  price = _price*10**18;  
-}
+  function setUri(string memory _metadataURI) external onlyOwner
+  {
+              _uri = _metadataURI;
+
+  }
+
 }
