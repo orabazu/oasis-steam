@@ -52,7 +52,8 @@ export const GameCarousel = () => {
   };
 
   const decreaseGame = () => {
-    const newIndex = selectedGameIndex - 1 > 0 ? selectedGameIndex - 1 : games.length - 1;
+    const newIndex =
+      selectedGameIndex - 1 >= 0 ? selectedGameIndex - 1 : games.length - 1;
     setSelectedGameIndex(newIndex);
   };
 
