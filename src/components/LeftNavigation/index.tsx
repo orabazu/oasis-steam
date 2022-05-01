@@ -3,8 +3,6 @@ import './LeftNavigation.scss';
 import {
   AimOutlined,
   ArrowDownOutlined,
-  DingtalkOutlined,
-  RiseOutlined,
   TableOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
@@ -52,15 +50,11 @@ export const LeftNavigation = () => {
         <p>
           <TrophyOutlined /> Top played
         </p>
-        <p>
-          <RiseOutlined /> Recently Updated
-        </p>
+
         <p>
           <AimOutlined /> Action
         </p>
-        <p>
-          <DingtalkOutlined /> Hack & Slash
-        </p>
+
         <p>
           <TableOutlined /> Puzzle
         </p>
