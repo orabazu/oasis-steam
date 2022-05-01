@@ -3,44 +3,38 @@ import './GameCarousel.scss';
 
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Button, Col, Row } from 'antd';
+
 import Text from 'antd/lib/typography/Text';
 import Title from 'antd/lib/typography/Title';
+
 import aImg1 from 'assets/aim-trainer/aimg1.png';
 import aImg2 from 'assets/aim-trainer/aimg2.png';
 import aImg3 from 'assets/aim-trainer/aimg3.png';
-import mgImg1 from 'assets/memory-game/img1.png';
-import mgImg2 from 'assets/memory-game/img2.png';
-import mgImg3 from 'assets/memory-game/img3.png';
-import wImg1 from 'assets/whell-fortune/wimg1.png';
-import wImg2 from 'assets/whell-fortune/wimg2.png';
-import wImg3 from 'assets/whell-fortune/wimg3.png';
-import wImg4 from 'assets/whell-fortune/wimg4.png';
+import aImg4 from 'assets/aim-trainer/aimg4.png';
+
+import cc1 from 'assets/crypto-cards/cc1.png';
+import cc2 from 'assets/crypto-cards/cc2.png';
+import cc3 from 'assets/crypto-cards/cc3.png';
+import cc4 from 'assets/crypto-cards/cc4.png';
+
 import React, { useEffect, useState } from 'react';
 
 const games = [
   {
     category: 'Top Played',
-    name: 'Memory Game',
+    name: 'Crypto Cards',
     description: 'Try to remember memory matrix',
-    heroImage: mgImg1,
-    images: [mgImg1, mgImg2, mgImg3],
+    heroImage: cc1,
+    images: [cc1, cc2, cc3, cc4],
     link: 'https://memory-game-xi-two.vercel.app/',
   },
   {
     category: 'Top Played',
-    name: 'Aim training',
+    name: 'Aim Trainer',
     description: 'Aim trainer, get better at your favorite FPS game 🏹',
     heroImage: aImg1,
-    images: [aImg1, aImg2, aImg3],
-    link: 'https://demo-aim-game-e0ae5ejdt-tunahandanis.vercel.app/',
-  },
-  {
-    category: 'Top Played',
-    name: 'Whell of Fortune',
-    description: 'Fingers crossed 🤞',
-    heroImage: wImg1,
-    images: [wImg1, wImg2, wImg3, wImg4],
-    link: 'https://wheel-of-fortune-573k7fiws-tunahandanis.vercel.app/',
+    images: [aImg1, aImg2, aImg3, aImg4],
+    link: 'https://demo-aim-game.vercel.app/',
   },
 ];
 
