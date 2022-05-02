@@ -32,7 +32,7 @@ export const LeftNavigation = () => {
 
       if (tileAmount) {
         let transaction = await connectedContract.swapTileForRose(
-          ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
+          ethers.utils.parseUnits((tileAmount / 1000).toString(), 'ether'),
         );
 
         await transaction.wait();
