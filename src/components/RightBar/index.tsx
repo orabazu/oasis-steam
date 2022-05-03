@@ -1,10 +1,10 @@
 import { GameCarousel } from 'components/GameCarousel';
 import React from 'react';
 
-export const RightBar = () => {
+export const RightBar = ({ chosenCategory }: any) => {
   return (
     <div>
-      <GameCarousel></GameCarousel>
+      <GameCarousel chosenCategory={chosenCategory}></GameCarousel>
     </div>
   );
 };

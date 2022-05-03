@@ -13,7 +13,7 @@ import { ethers } from 'ethers';
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
-export const LeftNavigation = () => {
+export const LeftNavigation = ({ handleCategoryChoice }: any) => {
   const [accountState] = useAccountContext();
   const [tileAmount, setTileAmount] = useState<number>();
 
@@ -47,17 +47,35 @@ export const LeftNavigation = () => {
   return (
     <div className="LeftNavigation">
       <Card title="Browse Categories" bordered={false}>
-        <p>
-          <TrophyOutlined /> Top played
-        </p>
+        <button
+          className="btn"
+          onClick={() => handleCategoryChoice('All')}
+          style={{ display: 'flex', background: 'transparent', border: 'none' }}
+        >
+          <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
+            <TrophyOutlined /> All
+          </p>
+        </button>
 
-        <p>
-          <AimOutlined /> Action
-        </p>
+        <button
+          className="btn"
+          onClick={() => handleCategoryChoice('Action')}
+          style={{ display: 'flex', background: 'transparent', border: 'none' }}
+        >
+          <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
+            <AimOutlined /> Action
+          </p>
+        </button>
 
-        <p>
-          <TableOutlined /> Puzzle
-        </p>
+        <button
+          className="btn"
+          onClick={() => handleCategoryChoice('Puzzle')}
+          style={{ display: 'flex', background: 'transparent', border: 'none' }}
+        >
+          <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
+            <TableOutlined /> Puzzle
+          </p>
+        </button>
       </Card>
       <Card title="Exchange ROSE token" bordered={false} className="ExchangeCard">
         <InputNumber

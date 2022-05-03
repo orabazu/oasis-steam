@@ -21,7 +21,7 @@ import React, { useEffect, useState } from 'react';
 
 const games = [
   {
-    category: 'Top Played',
+    category: 'Puzzle',
     name: 'Crypto Cards',
     description: 'Try to remember memory matrix',
     heroImage: cc1,
@@ -29,7 +29,7 @@ const games = [
     link: 'https://memory-game-xi-two.vercel.app/',
   },
   {
-    category: 'Top Played',
+    category: 'Action',
     name: 'Aim Trainer',
     description: 'Aim trainer, get better at your favorite FPS game 🏹',
     heroImage: aImg1,
@@ -38,22 +38,30 @@ const games = [
   },
 ];
 
-export const GameCarousel = () => {
+export const GameCarousel = ({ chosenCategory }: any) => {
+  const shownGames =
+    chosenCategory === 'All'
+      ? games
+      : games.filter((game) => game.category === chosenCategory);
+
   const [selectedGameIndex, setSelectedGameIndex] = useState(0);
-  const [mainImage, setMainImage] = useState(games[0].heroImage);
+  const [mainImage, setMainImage] = useState(shownGames[0].heroImage);
+
+  console.log(shownGames, chosenCategory);
 
   useEffect(() => {
-    setMainImage(games[selectedGameIndex].heroImage);
-  }, [selectedGameIndex]);
+    setMainImage(shownGames[selectedGameIndex].heroImage);
+  }, [selectedGameIndex, chosenCategory]);
 
   const increaseGame = () => {
-    const newIndex = selectedGameIndex + 1 < games.length ? selectedGameIndex + 1 : 0;
+    const newIndex =
+      selectedGameIndex + 1 < shownGames.length ? selectedGameIndex + 1 : 0;
     setSelectedGameIndex(newIndex);
   };
 
   const decreaseGame = () => {
     const newIndex =
-      selectedGameIndex - 1 >= 0 ? selectedGameIndex - 1 : games.length - 1;
+      selectedGameIndex - 1 >= 0 ? selectedGameIndex - 1 : shownGames.length - 1;
     setSelectedGameIndex(newIndex);
   };
 
@@ -64,12 +72,12 @@ export const GameCarousel = () => {
           <img src={mainImage} className="GameImage"></img>
         </Col>
         <Col span={6} className="GameCarouselRight">
-          <Text type="secondary">{games[selectedGameIndex].category}</Text>
+          <Text type="secondary">{shownGames[selectedGameIndex].category}</Text>
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
-            {games[selectedGameIndex].name}
+            {shownGames[selectedGameIndex].name}
           </Title>
           <Row gutter={[16, 24]}>
-            {games[selectedGameIndex].images.map((img, idx) => (
+            {shownGames[selectedGameIndex].images.map((img, idx) => (
               <Col span={12} key={idx}>
                 <img
                   src={img}
@@ -81,10 +89,12 @@ export const GameCarousel = () => {
             ))}
           </Row>
           <Row>
-            <Text style={{ marginTop: 10 }}>{games[selectedGameIndex].description}</Text>
+            <Text style={{ marginTop: 10 }}>
+              {shownGames[selectedGameIndex].description}
+            </Text>
           </Row>
           <div className="Action">
-            <a href={games[selectedGameIndex].link} target="_blank" rel="noreferrer">
+            <a href={shownGames[selectedGameIndex].link} target="_blank" rel="noreferrer">
               <Button type="primary">Play now</Button>
             </a>
           </div>
@@ -96,7 +106,7 @@ export const GameCarousel = () => {
               onClick={decreaseGame}
             />
             <Text>
-              {selectedGameIndex + 1} of {games.length}
+              {selectedGameIndex + 1} of {shownGames.length}
             </Text>
             <Button
               shape="circle"

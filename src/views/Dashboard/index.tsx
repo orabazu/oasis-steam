@@ -3,16 +3,22 @@ import './Dashboard.scss';
 import { Col, Row } from 'antd';
 import { LeftNavigation } from 'components/LeftNavigation';
 import { RightBar } from 'components/RightBar';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Dashboard = () => {
+  const [chosenCategory, setChosenCategory] = useState('All');
+
+  const handleCategoryChoice = (newCategory: any) => {
+    setChosenCategory(newCategory);
+  };
+
   return (
     <Row className="Dashboard">
       <Col span={6}>
-        <LeftNavigation></LeftNavigation>
+        <LeftNavigation handleCategoryChoice={handleCategoryChoice}></LeftNavigation>
       </Col>
       <Col span={18}>
-        <RightBar></RightBar>
+        <RightBar chosenCategory={chosenCategory}></RightBar>
       </Col>
     </Row>
   );
