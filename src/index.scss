@@ -8,29 +8,35 @@
 
 body {
   background-color: $space-cadet;
-  *:not(.ant-typography, input, .ant-notification *, .ant-modal-content *){
+  *:not(.ant-typography, input, .ant-notification *, .ant-modal-content *, .status
+      *, .address-info *) {
     color: $white !important;
   }
-  .ant-typography{
+  .ant-typography {
     color: $white;
   }
-  .ant-typography.ant-typography-secondary{
+  .ant-typography.ant-typography-secondary {
     color: #8a8a8a;
   }
-  .ant-modal-header *, .ant-modal-body *, .ant-modal-close-icon, .ant-modal-close-icon svg {
-    color: $black !important
+  .ant-modal-header *,
+  .ant-modal-body *,
+  .ant-modal-close-icon,
+  .ant-modal-close-icon svg {
+    color: $black !important;
   }
 }
 
-
-
 .ant-notification-notice-description {
-  color: $black!important
+  color: $black !important;
 }
 
 .button-color {
   background-color: $sky-blue-crayola;
-  background: linear-gradient(180deg, $sky-blue-crayola -8.72%, $violet-blue 120.58%) !important;
+  background: linear-gradient(
+    180deg,
+    $sky-blue-crayola -8.72%,
+    $violet-blue 120.58%
+  ) !important;
   color: $white;
 }
 
@@ -147,13 +153,14 @@ body {
   border: 3px solid $light-gray;
 }
 
-input, .ant-input-number {
+input,
+.ant-input-number {
   border-radius: 14px !important;
 }
 
-.ant-input-number{
+.ant-input-number {
   width: 100%;
-  * { 
+  * {
     color: $black;
   }
 }
@@ -187,6 +194,6 @@ input, .ant-input-number {
   }
 }
 
-.ant-btn-lg{
+.ant-btn-lg {
   height: 40px;
 }

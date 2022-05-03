@@ -1,11 +1,14 @@
 @import '../../styles/colors.scss';
-.Advertisement{
+.Advertisement {
   // display: flex;
   // align-items: center;
   // justify-content: center;
   // margin: 20px 0;
 
-  padding: 20px 30px ;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px 30px;
 
   .AdvertisementCard {
     // min-height: 500px;
@@ -28,19 +31,87 @@
       object-fit: cover;
       margin: 20px 0;
     }
-
   }
 
   .VoteCard {
-    padding: 20px 20px;
+    padding: 15px 15px;
     margin-bottom: 20px;
     background: $independence;
     border-radius: 16px;
 
-    .voteButton{
+    .voteButton {
       display: flex;
       justify-content: end;
       gap: 10px;
     }
+  }
+}
+
+.advertisement-card-label {
+  font-size: 1.5rem;
+}
+
+.button-fancy {
+  margin-top: 1.5em;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .button-fancy {
+    margin: 0 0 0 0.5em;
+  }
+
+  a {
+    text-decoration: none;
+    margin-left: 1.5em;
+  }
+
+  .status {
+    font-size: 1.2rem;
+    text-align: right;
+
+    .button-fancy {
+      margin: 0 0.5em 0 1.5em;
+    }
+
+    span {
+      margin-left: 0.4em;
+    }
+
+    .purchase-btn {
+      margin-left: 1.2em;
+      background: linear-gradient(to right, #17548d, #2a8deb);
+      color: #fff;
+    }
+  }
+}
+
+.status--green {
+  color: #00c44b;
+}
+
+.status--blue {
+  color: #2485dd;
+}
+
+.status--red {
+  color: #cc353c;
+}
+
+.address-info {
+  margin-bottom: 4em !important;
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  h3 {
+    font-weight: 400;
+    color: #2b91f1;
   }
 }
