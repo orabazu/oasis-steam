@@ -1,6 +1,6 @@
 import './Footer.scss';
 
-import { DollarCircleFilled, SmileFilled } from '@ant-design/icons';
+import { DollarCircleFilled } from '@ant-design/icons';
 import { contractABI, contractAddress } from 'abi/contract';
 import { Button } from 'antd';
 import Text from 'antd/lib/typography/Text';
@@ -36,9 +36,6 @@ export const Footer = () => {
         Buy Tile
       </Button>
       <Text>2022 © Tile Token</Text>
-      <Button type="text" icon={<SmileFilled />}>
-        Need Help?
-      </Button>
     </div>
   );
 };

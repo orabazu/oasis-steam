@@ -51,14 +51,12 @@ const Header = () => {
               <NavLink to="/" className="heading">
                 TILE
               </NavLink>
-              <NavLink to="/" className="menuItem">
-                Store
-              </NavLink>
+
               <NavLink to="/governance" className="menuItem">
-                Governance
+                Governor
               </NavLink>
               <NavLink to="/ads" className="menuItem">
-                Ads
+                Advertiser
               </NavLink>
             </>
           }
