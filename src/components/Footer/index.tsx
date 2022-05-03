@@ -35,7 +35,22 @@ export const Footer = () => {
       <Button icon={<DollarCircleFilled />} type="primary" onClick={mintAdvertiserToken}>
         Buy Tile
       </Button>
-      <Text>2022 © Tile Token</Text>
+      <div className="oasis-ad" style={{ textAlign: 'center' }}>
+        <h3 style={{ fontWeight: 600 }}>
+          Oasis Network. Next frontier in privacy-enabled blockchain
+        </h3>
+        <a
+          href="https://oasisprotocol.org/"
+          title="https://oasisprotocol.org/"
+          target="_blank"
+          style={{ margin: '.5em 0 -.7em 0' }}
+          className="ant-btn button-fancy"
+          rel="noreferrer"
+        >
+          Click to explore
+        </a>
+      </div>
+      <Text>2022 © TILE Gaming</Text>
     </div>
   );
 };

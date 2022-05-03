@@ -17,6 +17,27 @@ export const LeftNavigation = ({ handleCategoryChoice }: any) => {
   const [accountState] = useAccountContext();
   const [tileAmount, setTileAmount] = useState<number>();
 
+  const claimTile = async () => {
+    try {
+      const { ethereum } = window;
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
+
+      let transaction = await connectedContract.claimTile(
+        ethers.utils.parseUnits('1.0', 'ether'),
+      );
+
+      await transaction.wait();
+      handleSuccess(transaction);
+
+      console.log(transaction);
+    } catch (error: any) {
+      handleError(error);
+    }
+  };
+
   const swapTileForRose = async () => {
     try {
       const { ethereum } = window;
@@ -97,6 +118,13 @@ export const LeftNavigation = ({ handleCategoryChoice }: any) => {
           onClick={swapTileForRose}
         >
           {accountState.account ? 'Swap' : 'Connect Wallet'}
+        </Button>
+      </Card>
+      <Card className="TileCard">
+        <h2 style={{ margin: `0 0 20px 0` }}>Claim TILE</h2>
+        <p style={{ paddingBottom: 10 }}>Claim 1 tile tokens for testing</p>
+        <Button block size="large" className="button-fancy" onClick={claimTile}>
+          {'Claim Tiles'}
         </Button>
       </Card>
     </div>

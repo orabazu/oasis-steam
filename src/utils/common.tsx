@@ -15,7 +15,7 @@ export const handleError = (error: any) => {
         target="_blank"
         rel="noreferrer"
       >
-        Check on oasis scan
+        Check on Oasis Scan
       </a>
     ),
     duration: 7,
@@ -32,7 +32,7 @@ export const handleSuccess = (success: any) => {
         target="_blank"
         rel="noreferrer"
       >
-        Check on oasis scan
+        Check on Oasis Scan
       </a>
     ),
     duration: 7,

@@ -8,6 +8,7 @@ import Dashboard from 'views/Dashboard';
 import Governance from 'views/Governance';
 
 import { AccountContextProvider } from '../../contexts/accountContext';
+import Gamer from '../Gamer';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
             <Route path="/" element={<Header />}>
               <Route index element={<Dashboard />} />
               <Route path="governance" element={<Governance />} />
-              <Route path="ads" element={<Advertisement />} />
+              <Route path="gamer" element={<Gamer />} />
+
+              <Route path="advertiser" element={<Advertisement />} />
             </Route>
             <Route
               path="*"

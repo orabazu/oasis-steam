@@ -9,7 +9,7 @@
 body {
   background-color: $space-cadet;
   *:not(.ant-typography, input, .ant-notification *, .ant-modal-content *, .status
-      *, .address-info *) {
+      *, .address-info *, .account-summary *, .hidden-content *) {
     color: $white !important;
   }
   .ant-typography {

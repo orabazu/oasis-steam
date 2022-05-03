@@ -52,10 +52,14 @@ const Header = () => {
                 TILE
               </NavLink>
 
+              <NavLink to="/gamer" className="menuItem">
+                Gamer
+              </NavLink>
+
               <NavLink to="/governance" className="menuItem">
                 Governor
               </NavLink>
-              <NavLink to="/ads" className="menuItem">
+              <NavLink to="/advertiser" className="menuItem">
                 Advertiser
               </NavLink>
             </>
