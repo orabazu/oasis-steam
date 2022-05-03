@@ -1,0 +1,124 @@
+@import '../../styles/colors.scss';
+
+.address-info,
+.transactions {
+  margin: 2em;
+}
+
+.transactions__title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.account-summary {
+  padding: 15px 15px 20px 15px;
+  background: $independence;
+  border-radius: 16px;
+  margin: 1.2em 1.2em 2.4em 1.2em;
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 1.5em 0.5em 0 0;
+  }
+
+  &__earned {
+    color: #00c44b;
+  }
+
+  &__exchanged {
+    color: #cc353c;
+  }
+
+  &__balance {
+    color: #2b91f1;
+  }
+}
+
+.table__title ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  font-size: 1.4rem;
+  background-color: hsl(235, 18%, 39%);
+  padding: 1em 0;
+  margin: 0;
+
+  li {
+    width: 7em;
+    text-align: center;
+  }
+}
+
+.transactions__rows {
+  ul {
+    background-color: hsl(235, 18%, 29%);
+  }
+
+  .shown-content {
+    background-color: hsl(235, 18%, 29%);
+    li {
+      width: 7em;
+      text-align: center;
+    }
+  }
+
+  .hidden-content {
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: max-height 1s ease;
+
+    font-size: 1.2rem;
+
+    li {
+      width: auto;
+      margin: 2em 0;
+    }
+
+    span {
+      margin: 0 0.4em;
+      color: #2b91f1;
+    }
+  }
+}
+
+.row {
+  ul {
+    transition: all 0.2s ease;
+  }
+
+  li {
+    font-size: 1.2rem;
+  }
+}
+
+.row:hover {
+  .hidden-content {
+    max-height: 1000px;
+    transition: max-height 2s ease;
+  }
+
+  ul {
+    background-color: hsl(235, 18%, 24%);
+  }
+}
+
+.row--green {
+  ul {
+    border-left: 2px solid #00c44b;
+  }
+}
+
+.row--red {
+  ul {
+    border-left: 2px solid #cc353c;
+  }
+}
