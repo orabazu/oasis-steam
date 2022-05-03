@@ -47,11 +47,18 @@ export const GameCarousel = ({ chosenCategory }: any) => {
   const [selectedGameIndex, setSelectedGameIndex] = useState(0);
   const [mainImage, setMainImage] = useState(shownGames[0].heroImage);
 
-  console.log(shownGames, chosenCategory);
+  console.log(shownGames, selectedGameIndex);
 
   useEffect(() => {
-    setMainImage(shownGames[selectedGameIndex].heroImage);
+    setMainImage(
+      shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]
+        .heroImage,
+    );
   }, [selectedGameIndex, chosenCategory]);
+
+  useEffect(() => {
+    setSelectedGameIndex(0);
+  }, [chosenCategory]);
 
   const increaseGame = () => {
     const newIndex =
@@ -72,12 +79,22 @@ export const GameCarousel = ({ chosenCategory }: any) => {
           <img src={mainImage} className="GameImage"></img>
         </Col>
         <Col span={6} className="GameCarouselRight">
-          <Text type="secondary">{shownGames[selectedGameIndex].category}</Text>
+          <Text type="secondary">
+            {
+              shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]
+                .category
+            }
+          </Text>
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
-            {shownGames[selectedGameIndex].name}
+            {
+              shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]
+                .name
+            }
           </Title>
           <Row gutter={[16, 24]}>
-            {shownGames[selectedGameIndex].images.map((img, idx) => (
+            {shownGames[
+              selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex
+            ].images.map((img, idx) => (
               <Col span={12} key={idx}>
                 <img
                   src={img}
@@ -90,11 +107,21 @@ export const GameCarousel = ({ chosenCategory }: any) => {
           </Row>
           <Row>
             <Text style={{ marginTop: 10 }}>
-              {shownGames[selectedGameIndex].description}
+              {
+                shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]
+                  .description
+              }
             </Text>
           </Row>
           <div className="Action">
-            <a href={shownGames[selectedGameIndex].link} target="_blank" rel="noreferrer">
+            <a
+              href={
+                shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]
+                  .link
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
               <Button type="primary">Play now</Button>
             </a>
           </div>
@@ -106,7 +133,8 @@ export const GameCarousel = ({ chosenCategory }: any) => {
               onClick={decreaseGame}
             />
             <Text>
-              {selectedGameIndex + 1} of {shownGames.length}
+              {selectedGameIndex >= shownGames.length ? 1 : selectedGameIndex + 1} of{' '}
+              {shownGames.length}
             </Text>
             <Button
               shape="circle"
