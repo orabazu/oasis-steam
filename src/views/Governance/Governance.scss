@@ -1,11 +1,11 @@
 @import '../../styles/colors.scss';
-.Governance{
+.Governance {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 20px 0;
 
-  .TileCard{
+  .TileCard {
     min-height: 100px;
     padding: 30px 20px;
     background: $independence;
@@ -15,7 +15,7 @@
     margin-top: 20px;
   }
 
-  .GovernanceCard{
+  .GovernanceCard {
     min-height: 500px;
     padding: 30px 20px;
     background: $independence;
@@ -31,5 +31,121 @@
       object-fit: cover;
       margin: 20px 0;
     }
+  }
+}
+
+.address-info {
+  margin: 1em;
+}
+
+.VoteCard {
+  padding: 15px 15px;
+  margin-bottom: 20px;
+  background: $independence;
+  border-radius: 16px;
+
+  .voteButton {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+}
+
+.accept-btn,
+.reject-btn {
+  margin-right: 0.7em;
+  align-items: center;
+  border: 0px;
+  border-radius: 16px;
+  box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 1;
+  outline: 0px;
+  height: 40px;
+  padding: 0px 16px;
+}
+
+.accept-btn {
+  background: linear-gradient(to right, #00772e, #00973a);
+}
+
+.reject-btn {
+  background: linear-gradient(to right, #832227, #cc353c);
+}
+
+.left-col {
+  margin-right: 10em;
+  margin-top: -4.5em;
+}
+
+.right-col {
+  margin-left: 10em;
+}
+
+.col-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .button-fancy {
+    margin: 0 0 0 0.5em;
+  }
+
+  a {
+    text-decoration: none;
+    margin-left: 1.5em;
+  }
+
+  .status {
+    font-size: 1.2rem;
+    text-align: right;
+
+    .button-fancy {
+      margin: 0 0.5em 0 1.5em;
+    }
+
+    span {
+      margin-left: 0.4em;
+    }
+
+    .purchase-btn {
+      margin-left: 1.2em;
+      background: linear-gradient(to right, #17548d, #2a8deb);
+      color: #fff;
+    }
+  }
+}
+
+.status--green {
+  color: #00c44b;
+}
+
+.status--blue {
+  color: #2485dd;
+}
+
+.status--red {
+  color: #cc353c;
+}
+
+.voted {
+  margin-right: -12em;
+
+  span {
+    margin-left: -15em;
   }
 }
