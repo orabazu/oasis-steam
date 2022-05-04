@@ -81,6 +81,49 @@ const Advertisement = () => {
         ...prev,
       ]);
 
+      // VARIABLES TO INSERT INTO TABLE
+
+      const d = new Date();
+      const date = d.toLocaleDateString() + '\n' + d.toLocaleTimeString();
+
+      const advertisementTitle = adTitle;
+
+      const advertisementDescription = adDesc;
+
+      const advertisementUrl = adUrl;
+
+      // LOGGING INFO ABOUT NEW AD BID MINTING TO CONSOLE
+
+      const consoleMsg =
+        '**************************' +
+        '\n\nYou have minted a new advertisement bid!' +
+        '\n\nAdvertisement Title: ' +
+        advertisementTitle +
+        '\n\nAdvertisement Description: ' +
+        advertisementDescription +
+        '\n\nAdvertisement URL: ' +
+        advertisementUrl +
+        '\n\nDate: ' +
+        date +
+        '\n\n**************************';
+
+      console.log(consoleMsg);
+
+      /*
+      =====================================================
+      INSERT THE FOLLOWING DATA TO THE ADVERTISEMENTS TABLE
+
+      string date: Local date of the minting of ad bid
+
+      string advertisementTitle
+
+      string advertisementDescription
+
+      string advertisemenUrl
+      
+      =====================================================
+      */
+
       setAdTitle('');
       setAdDesc('');
       setAdUrl('');
