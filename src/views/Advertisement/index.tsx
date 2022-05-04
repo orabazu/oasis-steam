@@ -14,7 +14,7 @@ import { Button, Col, Input, Row } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import React from 'react';
 
-const ads = [
+const ads: any[] = [
   {
     title: 'Books',
     description: 'Love books? Explore our collection',
@@ -140,7 +140,13 @@ const Advertisement = () => {
       <Col span={10} style={{ marginTop: '-1em' }}>
         <div className="address-info">
           <h2>My Advertiser NFT</h2>
-          <h3>0x7AaE98b06E576c34507488C0a5F1085AFffb2869</h3>
+          {ads.length > 0 ? (
+            <h3 className="address">0x7AaE98b06E576c34507488C0a5F1085AFffb2869</h3>
+          ) : (
+            <h3 className="no-nft">
+              Please mint an advertisement bid to get your Advertiser NFT
+            </h3>
+          )}
         </div>
         <div className="AdvertisementCard">
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
@@ -173,41 +179,43 @@ const Advertisement = () => {
         <Title level={2} style={{ margin: `0 0 30px 0`, textAlign: 'center' }}>
           My Advertisements
         </Title>
-        {ads.map((ads) => (
-          <div className="VoteCard" key={ads.id}>
-            <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
-            <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
-            <div className="card-bottom">
-              <a
-                target="_blank"
-                className="ant-btn button-fancy"
-                href={ads.url}
-                title={ads.url}
-                rel="noreferrer"
-              >
-                Link
-              </a>
-              <div className="status">
-                Status:
-                <span
-                  className={`status--${
-                    ads.status === 'Accepted'
-                      ? 'green'
-                      : ads.status === 'Rejected'
-                      ? 'red'
-                      : ads.status === 'Published'
-                      ? 'blue'
-                      : 'dull'
-                  }`}
-                >
-                  {ads.status}
-                </span>
-                {ads.status === 'Accepted' && (
-                  <button className="ant-btn purchase-btn">Purchase</button>
-                )}
-              </div>
-            </div>
-            {/* <div className="voteButton">
+        {ads.length > 0 ? (
+          <div>
+            {ads.map((ads) => (
+              <div className="VoteCard" key={ads.id}>
+                <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
+                <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
+                <div className="card-bottom">
+                  <a
+                    target="_blank"
+                    className="ant-btn button-fancy"
+                    href={ads.url}
+                    title={ads.url}
+                    rel="noreferrer"
+                  >
+                    Link
+                  </a>
+                  <div className="status">
+                    Status:
+                    <span
+                      className={`status--${
+                        ads.status === 'Accepted'
+                          ? 'green'
+                          : ads.status === 'Rejected'
+                          ? 'red'
+                          : ads.status === 'Published'
+                          ? 'blue'
+                          : 'dull'
+                      }`}
+                    >
+                      {ads.status}
+                    </span>
+                    {ads.status === 'Accepted' && (
+                      <button className="ant-btn purchase-btn">Purchase</button>
+                    )}
+                  </div>
+                </div>
+                {/* <div className="voteButton">
               <Button size="large" type="primary" onClick={() => showModal(ads.id)}>
                 {'Vote'}
               </Button>
@@ -219,8 +227,12 @@ const Advertisement = () => {
                 {'Get Ad State'}
               </Button>
             </div> */}
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <h2 className="no-bid">No advertisement bid minted yet</h2>
+        )}
       </Col>
       {/* <Modal
         title="Do you want to approve this ad?"
