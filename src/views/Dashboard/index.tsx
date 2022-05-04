@@ -15,7 +15,10 @@ const Dashboard = () => {
   return (
     <Row className="Dashboard">
       <Col span={6}>
-        <LeftNavigation handleCategoryChoice={handleCategoryChoice}></LeftNavigation>
+        <LeftNavigation
+          handleCategoryChoice={handleCategoryChoice}
+          chosenCategory={chosenCategory}
+        ></LeftNavigation>
       </Col>
       <Col span={18}>
         <RightBar chosenCategory={chosenCategory}></RightBar>

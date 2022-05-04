@@ -13,7 +13,7 @@ import { ethers } from 'ethers';
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
-export const LeftNavigation = ({ handleCategoryChoice }: any) => {
+export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) => {
   const [accountState] = useAccountContext();
   const [tileAmount, setTileAmount] = useState<number>();
 
@@ -74,7 +74,8 @@ export const LeftNavigation = ({ handleCategoryChoice }: any) => {
           style={{ display: 'flex', background: 'transparent', border: 'none' }}
         >
           <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
-            <TrophyOutlined /> All
+            <TrophyOutlined />{' '}
+            <span className={chosenCategory === 'All' ? 'chosen' : ''}>All</span>
           </p>
         </button>
 
@@ -84,7 +85,8 @@ export const LeftNavigation = ({ handleCategoryChoice }: any) => {
           style={{ display: 'flex', background: 'transparent', border: 'none' }}
         >
           <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
-            <AimOutlined /> Action
+            <AimOutlined />{' '}
+            <span className={chosenCategory === 'Action' ? 'chosen' : ''}>Action</span>
           </p>
         </button>
 
@@ -94,7 +96,8 @@ export const LeftNavigation = ({ handleCategoryChoice }: any) => {
           style={{ display: 'flex', background: 'transparent', border: 'none' }}
         >
           <p style={{ fontSize: '1rem', cursor: 'pointer' }}>
-            <TableOutlined /> Puzzle
+            <TableOutlined />{' '}
+            <span className={chosenCategory === 'Puzzle' ? 'chosen' : ''}>Puzzle</span>
           </p>
         </button>
       </Card>
