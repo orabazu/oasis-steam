@@ -12,9 +12,9 @@ import React, { useState } from 'react';
 */
 import { Button, Col, Input, Row } from 'antd';
 import Title from 'antd/lib/typography/Title';
-import React from 'react';
+import React, { useState } from 'react';
 
-const ads: any[] = [
+const initialAds: any[] = [
   {
     title: 'Books',
     description: 'Love books? Explore our collection',
@@ -50,6 +50,45 @@ const ads: any[] = [
 ];
 
 const Advertisement = () => {
+  /*
+  ===========
+  STATE HOOKS
+  ===========
+  */
+
+  const [ads, setAds] = useState(initialAds);
+
+  const [adTitle, setAdTitle] = useState('');
+  const [adDesc, setAdDesc] = useState('');
+  const [adUrl, setAdUrl] = useState('');
+
+  /*
+  =========
+  FUNCTIONS
+  =========
+  */
+
+  const addNewAd = () => {
+    if (adTitle.trim() !== '' && adUrl.trim() !== '' && adDesc.trim() !== '') {
+      setAds((prev) => [
+        {
+          title: adTitle,
+          description: adDesc,
+          url: adUrl,
+          id: prev[prev.length - 1].id + 1,
+          status: 'Voting in Progress',
+        },
+        ...prev,
+      ]);
+
+      setAdTitle('');
+      setAdDesc('');
+      setAdUrl('');
+    } else {
+      alert('Please fill out everything');
+    }
+  };
+
   /* const [adTokens, setAdTokens] = useState(ads);
    const [newAd, setNewAd] = useState('');
   const [selectedAd, setSelectedAd] = useState(0);
@@ -162,15 +201,30 @@ const Advertisement = () => {
             {'Mint Ad'}
           </Button> */}
           <h3 className="advertisement-card-label">Advertisement Title</h3>
-          <Input placeholder="Title" style={{ margin: `0 0 20px 0` }}></Input>
+          <Input
+            placeholder="Title"
+            style={{ margin: `0 0 20px 0` }}
+            value={adTitle}
+            onChange={(e) => setAdTitle(e.target.value)}
+          ></Input>
 
           <h3 className="advertisement-card-label">Advertisement Description</h3>
-          <Input placeholder="Description" style={{ margin: `0 0 20px 0` }}></Input>
+          <Input
+            placeholder="Description"
+            style={{ margin: `0 0 20px 0` }}
+            value={adDesc}
+            onChange={(e) => setAdDesc(e.target.value)}
+          ></Input>
 
           <h3 className="advertisement-card-label">Advertisement URL</h3>
-          <Input placeholder="URL" style={{ margin: `0 0 20px 0` }}></Input>
+          <Input
+            placeholder="URL"
+            style={{ margin: `0 0 20px 0` }}
+            value={adUrl}
+            onChange={(e) => setAdUrl(e.target.value)}
+          ></Input>
 
-          <Button block size="large" className="button-fancy">
+          <Button block size="large" className="button-fancy" onClick={addNewAd}>
             {'Mint Ad Bid'}
           </Button>
         </div>
