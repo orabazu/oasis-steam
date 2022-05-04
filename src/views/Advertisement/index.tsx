@@ -71,6 +71,8 @@ const Advertisement = () => {
   const addNewAd = () => {
     if (adTitle.trim() !== '' && adUrl.trim() !== '' && adDesc.trim() !== '') {
       setAds((prev) => [
+        ...prev,
+
         {
           title: adTitle,
           description: adDesc,
@@ -78,7 +80,6 @@ const Advertisement = () => {
           id: prev[prev.length - 1].id + 1,
           status: 'Voting in Progress',
         },
-        ...prev,
       ]);
 
       // VARIABLES TO INSERT INTO TABLE
@@ -130,6 +131,12 @@ const Advertisement = () => {
     } else {
       alert('Please fill out everything');
     }
+  };
+
+  const purchaseAd = (id: any) => {
+    setAds((prev) =>
+      prev.map((ad) => (ad.id === id ? { ...ad, status: 'Published' } : ad)),
+    );
   };
 
   /* const [adTokens, setAdTokens] = useState(ads);
@@ -278,7 +285,7 @@ const Advertisement = () => {
         </Title>
         {ads.length > 0 ? (
           <div>
-            {ads.map((ads) => (
+            {[...ads].reverse().map((ads) => (
               <div className="VoteCard" key={ads.id}>
                 <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
                 <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
@@ -308,7 +315,12 @@ const Advertisement = () => {
                       {ads.status}
                     </span>
                     {ads.status === 'Accepted' && (
-                      <button className="ant-btn purchase-btn">Purchase</button>
+                      <button
+                        className="ant-btn purchase-btn"
+                        onClick={() => purchaseAd(ads.id)}
+                      >
+                        Purchase
+                      </button>
                     )}
                   </div>
                 </div>
