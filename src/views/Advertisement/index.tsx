@@ -70,6 +70,9 @@ const Advertisement = () => {
 
   const addNewAd = () => {
     if (adTitle.trim() !== '' && adUrl.trim() !== '' && adDesc.trim() !== '') {
+      // DECLARING THE ID OF THE NEW AD BID
+      const advertisementId = ads[ads.length - 1].id + 1;
+
       setAds((prev) => [
         ...prev,
 
@@ -77,12 +80,12 @@ const Advertisement = () => {
           title: adTitle,
           description: adDesc,
           url: adUrl,
-          id: prev[prev.length - 1].id + 1,
+          id: advertisementId,
           status: 'Voting in Progress',
         },
       ]);
 
-      // VARIABLES TO INSERT INTO TABLE
+      // VARIABLES TO INSERT INTO TABLE, ALSO INCLUDES advertisementId WHICH'S ABOVE
 
       const d = new Date();
       const date = d.toLocaleDateString() + '\n' + d.toLocaleTimeString();
@@ -93,17 +96,23 @@ const Advertisement = () => {
 
       const advertisementUrl = adUrl;
 
+      const advertisementStatus = 'Voting in Progress';
+
       // LOGGING INFO ABOUT NEW AD BID MINTING TO CONSOLE
 
       const consoleMsg =
         '**************************' +
         '\n\nYou have minted a new advertisement bid!' +
+        '\n\nAdvertisement ID: ' +
+        advertisementId +
         '\n\nAdvertisement Title: ' +
         advertisementTitle +
         '\n\nAdvertisement Description: ' +
         advertisementDescription +
         '\n\nAdvertisement URL: ' +
         advertisementUrl +
+        '\n\nAdvertisement Status: ' +
+        advertisementStatus +
         '\n\nDate: ' +
         date +
         '\n\n**************************';
@@ -114,6 +123,8 @@ const Advertisement = () => {
       =====================================================
       INSERT THE FOLLOWING DATA TO THE ADVERTISEMENTS TABLE
 
+      int advertisementId
+
       string date: Local date of the minting of ad bid
 
       string advertisementTitle
@@ -121,6 +132,8 @@ const Advertisement = () => {
       string advertisementDescription
 
       string advertisemenUrl
+
+      string advertisementStatus
       
       =====================================================
       */
@@ -137,6 +150,37 @@ const Advertisement = () => {
     setAds((prev) =>
       prev.map((ad) => (ad.id === id ? { ...ad, status: 'Published' } : ad)),
     );
+
+    // FOR DATABASE CONNECTION, PLEASE CHECK OUT THE BELOW COMMENT
+
+    const idToModify = id;
+
+    const newAdvertisementStatus = 'Published';
+
+    // LOGGING INFO ABOUT CHANGING AD STATUS TO CONSOLE
+
+    const consoleMsg =
+      '**************************' +
+      '\n\nYou have purchased your advertisement \nbid with the ID: ' +
+      idToModify +
+      '\n\nNew Advertisement Status: ' +
+      newAdvertisementStatus +
+      '\n\n**************************';
+
+    console.log(consoleMsg);
+
+    /*
+     ===========================================================
+
+     PLEASE FIND THE ROW WITH THE GIVEN idToModify AND REPLACE THE
+     advertisementStatus OF THE ROW WITH THE NEW GIVEN NEW STATUS
+
+     int idToModify
+
+     string newAdvertisementStatus
+
+     ===========================================================
+     */
   };
 
   /* const [adTokens, setAdTokens] = useState(ads);
