@@ -17,6 +17,12 @@ export const contractABI = [
 
 // export const advertiserAddress = '0x7790b8300123a497f3E48d871DdF483dCB8d5722';
 export const contractAddress = '0x220B6Ca20db9Af34c2f1A0e47B747C7659523d91';
+export const tileTokenAddress = '0x0796f4E947EfC1F9e3798AAd155e4c0C667356Ea';
+
+export const tileABI = [
+  'function approve(address _spender, uint256 _value) public returns (bool success)', // fake approve
+];
+
 export const contractABI = [
   'function mintNFT(string calldata _metadataURI ) external payable',
 

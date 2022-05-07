@@ -6,7 +6,7 @@ import {
   TableOutlined,
   TrophyOutlined,
 } from '@ant-design/icons';
-import { contractABI, contractAddress } from 'abi/contract';
+import { contractABI, contractAddress, tileTokenAddress, tileABI } from 'abi/contract';
 import { Button, Card, InputNumber } from 'antd';
 import { useAccountContext } from 'contexts/accountContext';
 import { ethers } from 'ethers';
@@ -53,7 +53,7 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
 
       if (tileAmount) {
         let transaction = await connectedContract.swapTileForRose(
-          ethers.utils.parseUnits((tileAmount / 1000).toString(), 'ether'),
+          ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
         );
 
         await transaction.wait();
@@ -61,6 +61,29 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
         console.log(transaction);
       }
     } catch (error: any) {
+      handleError(error);
+    }
+  };
+
+  const approve = async () => {
+    try {
+      const { ethereum } = window;
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const tileToken = new ethers.Contract(tileTokenAddress, tileABI, signer);
+
+      if (tileAmount) {
+        let transaction = await tileToken.approve(
+          contractAddress,
+          ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
+        );
+
+        await transaction.wait();
+        handleSuccess(transaction);
+        console.log(transaction);
+      }
+    } catch (error) {
       handleError(error);
     }
   };
@@ -107,18 +130,27 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
           size="large"
           placeholder="0.0 in TILE"
           // value={tileAmount}
-          step="0.000000001"
+          step="0.1"
           onChange={(value) => setTileAmount(Number(value))}
         />
         <br></br>
         <ArrowDownOutlined />
-        <InputNumber size="large" placeholder="0.0 in ROSE" value={tileAmount} disabled />
+        <InputNumber
+          size="large"
+          placeholder="0.0 in ROSE"
+          value={tileAmount}
+          disabled
+          step={0.1}
+        />
         <Button
           block
           size="large"
           loading={accountState.isLoading}
           className="button-fancy"
-          onClick={swapTileForRose}
+          onClick={async () => {
+            await approve();
+            await swapTileForRose();
+          }}
         >
           {accountState.account ? 'Swap' : 'Connect Wallet'}
         </Button>
