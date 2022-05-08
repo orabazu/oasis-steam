@@ -1,3 +1,9 @@
+/* const MongoClient = require('mongodb').MongoClient;
+ */
+
+/* const url =
+  'mongodb+srv://dbuser:TestMongodbUser@cluster0.5uh5f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+ */
 /* eslint-disable jsx-a11y/alt-text */
 import './Advertisement.scss';
 
@@ -12,7 +18,8 @@ import React, { useState } from 'react';
 */
 import { Button, Col, Input, Row } from 'antd';
 import Title from 'antd/lib/typography/Title';
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 
 const initialAds: any[] = [
   {
@@ -62,18 +69,88 @@ const Advertisement = () => {
   const [adDesc, setAdDesc] = useState('');
   const [adUrl, setAdUrl] = useState('');
 
+  useEffect(() => {
+    fetchAds();
+    /* fetch('/getAdvertisements')
+      .then((res) => res.json())
+      .then((json) => setAds(json)); */
+  }, []);
+
   /*
   =========
   FUNCTIONS
   =========
   */
 
+  const fetchAds = async () => {
+    const res = await fetch('http://localhost:3001/getAdvertisements');
+    const json = await res.json();
+
+    setAds(json);
+  };
+
+  function insertAdvertisement(
+    advertisementId: any,
+    date: any,
+    advertisementTitle: any,
+    advertisementDescription: any,
+    advertisementUrl: any,
+    advertisementStatus: any,
+  ) {
+    const newAdvertisement = {
+      advertisementId: advertisementId,
+      date: date,
+      advertisementTitle: advertisementTitle,
+      advertisementDescription: advertisementDescription,
+      advertisementUrl: advertisementUrl,
+      advertisementStatus: advertisementStatus,
+    };
+
+    axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement);
+
+    /* 
+    const client = await MongoClient.connect(url, {
+      // useNewUrlParser: true,
+    }).catch((err: any) => {
+      console.log(err);
+    });
+
+    if (!client) {
+      return;
+    }
+
+    try {
+      const db = client.db('myFirstDatabase');
+
+      let collection = db.collection('advertisements');
+
+      let advertisement = {
+        advertisementId: advertisementId,
+        date: date,
+        advertisementTitle: advertisementTitle,
+        advertisementDescription: advertisementDescription,
+        advertisementUrl: advertisementUrl,
+        advertisementStatus: advertisementStatus,
+      };
+
+      let postID = (await collection.insertOne(advertisement)).insertedId;
+
+      console.log(postID);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      client.close();
+    } */
+  }
+
   const addNewAd = () => {
     if (adTitle.trim() !== '' && adUrl.trim() !== '' && adDesc.trim() !== '') {
       // DECLARING THE ID OF THE NEW AD BID
-      const advertisementId = ads[ads.length - 1].id + 1;
+      /* const advertisementId = ads[ads.length - 1].id + 1; */
 
-      setAds((prev) => [
+      const advertisementId = 5;
+
+      /* setAds((prev) => [
         ...prev,
 
         {
@@ -83,7 +160,7 @@ const Advertisement = () => {
           id: advertisementId,
           status: 'Voting in Progress',
         },
-      ]);
+      ]); */
 
       // VARIABLES TO INSERT INTO TABLE, ALSO INCLUDES advertisementId WHICH'S ABOVE
 
@@ -118,6 +195,15 @@ const Advertisement = () => {
         '\n\n**************************';
 
       console.log(consoleMsg);
+
+      insertAdvertisement(
+        advertisementId,
+        date,
+        advertisementTitle,
+        advertisementDescription,
+        advertisementUrl,
+        advertisementStatus,
+      );
 
       /*
       =====================================================
@@ -330,15 +416,19 @@ const Advertisement = () => {
         {ads.length > 0 ? (
           <div>
             {[...ads].reverse().map((ads) => (
-              <div className="VoteCard" key={ads.id}>
-                <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
-                <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
+              <div className="VoteCard" key={ads._id}>
+                <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+                  {ads.advertisementTitle}
+                </h2>
+                <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
+                  {ads.advertisementDescription}
+                </p>
                 <div className="card-bottom">
                   <a
                     target="_blank"
                     className="ant-btn button-fancy"
-                    href={ads.url}
-                    title={ads.url}
+                    href={ads.advertisementUrl}
+                    title={ads.advertisementUrl}
                     rel="noreferrer"
                   >
                     Link
@@ -347,18 +437,18 @@ const Advertisement = () => {
                     Status:
                     <span
                       className={`status--${
-                        ads.status === 'Accepted'
+                        ads.advertisementStatus === 'Accepted'
                           ? 'green'
-                          : ads.status === 'Rejected'
+                          : ads.advertisementStatus === 'Rejected'
                           ? 'red'
-                          : ads.status === 'Published'
+                          : ads.advertisementStatus === 'Published'
                           ? 'blue'
                           : 'dull'
                       }`}
                     >
-                      {ads.status}
+                      {ads.advertisementStatus}
                     </span>
-                    {ads.status === 'Accepted' && (
+                    {ads.advertisementStatus === 'Accepted' && (
                       <button
                         className="ant-btn purchase-btn"
                         onClick={() => purchaseAd(ads.id)}
