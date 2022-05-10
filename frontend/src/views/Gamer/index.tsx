@@ -1,7 +1,9 @@
 import './Gamer.scss';
 
-import { Button, Card, Col, Row } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Card, Col, Row } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import gif from './../../assets/TILE_GAMES_GAMER.gif';
 
 const Gamer = () => {
   const [transactions, setTransactions] = useState<any[]>([]);
@@ -17,18 +19,26 @@ const Gamer = () => {
     setTransactions(json);
   };
 
-  const earned = transactions
-    .filter((transaction) => transaction.transactionType !== 'Reward')
-    .reduce(
-      (prev, curr) => prev + (curr.tokenToClaim ? curr.tokenToClaim : curr.amount),
-      0,
-    )
-    .toFixed(5);
+  const earned = useMemo(
+    () =>
+      transactions
+        .filter((transaction) => transaction.transactionType !== 'Reward')
+        .reduce(
+          (prev, curr) => prev + (curr.tokenToClaim ? curr.tokenToClaim : curr.amount),
+          0,
+        )
+        .toFixed(5),
+    [transactions],
+  );
 
-  const exchanged = transactions
-    .filter((transaction) => transaction.transactionType === 'Swap')
-    .reduce((prev, curr) => prev + curr.amount, 0)
-    .toFixed(5);
+  const exchanged = useMemo(
+    () =>
+      transactions
+        .filter((transaction) => transaction.transactionType === 'Swap')
+        .reduce((prev, curr) => prev + curr.amount, 0)
+        .toFixed(5),
+    [transactions],
+  );
 
   const balance = earned - exchanged;
 
@@ -38,13 +48,13 @@ const Gamer = () => {
         <div className="address-info">
           <h2>My Gamer NFT</h2>
           <h3>0x7c4571600008ad0aeD614652c39884E6EE8C17aE</h3>
+          <img src={gif}></img>
         </div>
 
         <Card
           className="TileCard account-summary"
           title="My Account Summary"
           bordered={false}
-          // className="account-summary"
         >
           <h3>
             Total TILE Received:{' '}

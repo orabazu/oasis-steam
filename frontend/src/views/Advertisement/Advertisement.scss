@@ -1,14 +1,17 @@
 @import '../../styles/colors.scss';
 .Advertisement {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // margin: 20px 0;
-
   display: flex;
   justify-content: space-between;
-
   padding: 0 30px;
+
+  img {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    min-height: 400px;
+    object-fit: cover;
+    margin: 20px 0;
+  }
 
   .AdvertisementCard {
     // min-height: 500px;
@@ -22,14 +25,7 @@
       margin-bottom: 10px;
     }
 
-    img {
-      max-width: 100%;
-      height: 200px;
-      border-radius: 16px;
-      min-height: 400px;
-      object-fit: cover;
-      margin: 20px 0;
-    }
+  
   }
 
   .VoteCard {

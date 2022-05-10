@@ -2,20 +2,12 @@
 import './Governance.scss';
 
 import { Alert, Col, Row } from 'antd';
-/* import { contractABI, contractAddress } from 'abi/contract';
-import { Button, Col, Row } from 'antd';
-import Text from 'antd/lib/typography/Text';
-import Title from 'antd/lib/typography/Title';
-// import { useAccountContext } from 'contexts/accountContext';
-import { ethers } from 'ethers';
-import React from 'react';
-import { handleError, handleSuccess } from 'utils/common';
-
-import Logo from '../../assets/tile3.png'; */
 import React, { useEffect, useState } from 'react';
-
 import axios from 'axios';
+
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+
+import gif from './../../assets/TILE_GAMES_GOVERNOR.gif';
 
 const Governance = () => {
   // const [accountState] = useAccountContext();
@@ -77,14 +69,15 @@ const Governance = () => {
     setAds(json);
   };
 
-  const updateAdvertisement = (id: any, newStatus: any) => {
+  const updateAdvertisement = (id: string, newStatus: 'Accepted' | 'Rejected') => {
     const update = {
-      id: id,
-      newStatus: newStatus,
+      id,
+      newStatus,
     };
 
-    axios.post('http://localhost:3001/updateAdvertisement', update);
-    setDummyState((prev) => prev + 1);
+    axios
+      .post('http://localhost:3001/updateAdvertisement', update)
+      .finally(() => setDummyState((prev) => prev + 1));
   };
 
   return (
@@ -122,6 +115,7 @@ const Governance = () => {
         <div className="address-info">
           <h2>My Governor NFT</h2>
           <h3>0xfdfdF8eE730732d422A19f466E31cC4CE054db59</h3>
+          <img src={gif}></img>
         </div>
 
         <h2 className="col-title align-left">Vote for Advertisements</h2>

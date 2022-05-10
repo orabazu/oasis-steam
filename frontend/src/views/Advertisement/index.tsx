@@ -17,6 +17,8 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { contractABI, contractAddress } from 'abi/contract';
 import { handleError, handleSuccess } from 'utils/common';
 
+import gif from './../../assets/TILE_GAMES_ADVERTISER.gif';
+
 const dummyAds = [
   {
     advertisementTitle: 'Books',
@@ -373,7 +375,10 @@ const Advertisement = () => {
         <div className="address-info">
           <h2>My Advertiser NFT</h2>
           {ads.length > 0 ? (
-            <h3 className="address">0x7AaE98b06E576c34507488C0a5F1085AFffb2869</h3>
+            <>
+              <h3 className="address">0x7AaE98b06E576c34507488C0a5F1085AFffb2869</h3>
+              <img src={gif}></img>
+            </>
           ) : (
             <>
               <div className="flex flex-center">
