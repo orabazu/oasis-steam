@@ -47,8 +47,6 @@ export const GameCarousel = ({ chosenCategory }: any) => {
   const [selectedGameIndex, setSelectedGameIndex] = useState(0);
   const [mainImage, setMainImage] = useState(shownGames[0].heroImage);
 
-  console.log(shownGames, selectedGameIndex);
-
   useEffect(() => {
     setMainImage(
       shownGames[selectedGameIndex >= shownGames.length ? 0 : selectedGameIndex]

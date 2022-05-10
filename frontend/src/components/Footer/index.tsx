@@ -23,8 +23,6 @@ export const Footer = () => {
 
     const publishedAds = json.filter((ad: any) => ad.advertisementStatus === 'Published');
 
-    console.log(publishedAds);
-
     setRecentAd(publishedAds[publishedAds.length - 1]);
   };
 
