@@ -7,14 +7,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './Advertisement.scss';
 
-/* import { contractABI, contractAddress } from 'abi/contract';
-import { Button, Col, Input, Modal, Radio, Row } from 'antd';
-import Text from 'antd/lib/typography/Text';
-import Title from 'antd/lib/typography/Title';
-import React, { useState } from 'react';
-import { handleError, handleSuccess } from 'utils/common';
-import React, { useState } from 'react';
-*/
 import { ethers } from 'ethers';
 
 import { Button, Card, Col, Input, Row } from 'antd';
@@ -25,38 +17,39 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { contractABI, contractAddress } from 'abi/contract';
 import { handleError, handleSuccess } from 'utils/common';
 
-const dummyAds: any[] = [
+const dummyAds = [
   {
-    title: 'Books',
-    description: 'Love books? Explore our collection',
-    id: 1,
-    url: 'https://www.hachettebookgroup.com/genre/fiction/romance-fiction/',
-    status: 'Voting in Progress',
+    advertisementTitle: 'Books',
+    advertisementDescription: 'Love books? Explore our collection',
+    _id: 1,
+    advertisementUrl: 'https://www.hachettebookgroup.com/genre/fiction/romance-fiction/',
+    advertisementStatus: 'Voting in Progress',
   },
   {
-    title: 'Real Estate',
-    description: '9000+ homes for sale in New York',
-    id: 2,
-    url: 'https://www.sothebysrealty.com/eng/sales/new-york-ny-usa',
+    advertisementTitle: 'Real Estate',
+    advertisementDescription: '9000+ homes for sale in New York',
+    _id: 2,
+    advertisementUrl: 'https://www.sothebysrealty.com/eng/sales/new-york-ny-usa',
 
-    status: 'Accepted',
+    advertisementStatus: 'Accepted',
   },
   {
-    title: 'Oasis Network',
+    advertisementTitle: 'Oasis Network',
 
-    description: 'Oasis Network. Next frontier in privacy-enabled blockchain',
-    id: 3,
-    url: 'https://oasisprotocol.org/',
+    advertisementDescription:
+      'Oasis Network. Next frontier in privacy-enabled blockchain',
+    _id: 3,
+    advertisementUrl: 'https://oasisprotocol.org/',
 
-    status: 'Published',
+    advertisementStatus: 'Published',
   },
   {
-    title: 'Rental Homes',
-    description: 'You have a home anywhere in the world',
-    id: 4,
-    url: 'https://airbnb.com',
+    advertisementTitle: 'Rental Homes',
+    advertisementDescription: 'You have a home anywhere in the world',
+    _id: 4,
+    advertisementUrl: 'https://airbnb.com',
 
-    status: 'Rejected',
+    advertisementStatus: 'Rejected',
   },
 ];
 
@@ -67,7 +60,7 @@ const Advertisement = () => {
   ===========
   */
 
-  const [ads, setAds] = useState([]);
+  const [ads, setAds] = useState<typeof dummyAds>([]);
 
   const [adTitle, setAdTitle] = useState('');
   const [adDesc, setAdDesc] = useState('');
@@ -501,19 +494,6 @@ const Advertisement = () => {
           </>
         )}
       </Col>
-      {/* <Modal
-        title="Do you want to approve this ad?"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Yes"
-        cancelText="No"
-      >
-        <Radio.Group onChange={onVoteChange} value={isVoteApproved}>
-          <Radio value={true}>A</Radio>
-          <Radio value={false}>B</Radio>
-        </Radio.Group>
-      </Modal> */}
     </Row>
   );
 };

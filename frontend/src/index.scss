@@ -12,7 +12,7 @@ body {
       *, .address-info *, .account-summary *, .hidden-content *, .chosen, .oasis-link, .ant-alert-content *) {
     color: $white !important;
   }
-  .ant-typography {
+  .ant-typography, .ant-card-head-title {
     color: $white;
   }
   .ant-typography.ant-typography-secondary {
