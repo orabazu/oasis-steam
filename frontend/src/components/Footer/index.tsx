@@ -107,7 +107,7 @@ export const Footer = () => {
           </a>
         </div>
       )}
-      <Text>2022 © TILE Gaming</Text>
+      <Text>2022 © TILE Games</Text>
     </div>
   );
 };
