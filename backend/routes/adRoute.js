@@ -3,21 +3,21 @@ const router = express.Router();
 const Advertisement = require('../models/adModel');
 
 router.route('/bidAdvertisement').post((req, res) => {
-  const advertisementId = req.body.advertisementId;
   const date = req.body.date;
   const advertisementTitle = req.body.advertisementTitle;
 
   const advertisementDescription = req.body.advertisementDescription;
   const advertisementUrl = req.body.advertisementUrl;
   const advertisementStatus = req.body.advertisementStatus;
+  const advertisementTokenId = req.body.advertisementTokenId;
 
   const newAdvertisement = new Advertisement({
-    advertisementId,
     date,
     advertisementTitle,
     advertisementDescription,
     advertisementUrl,
     advertisementStatus,
+    advertisementTokenId
   });
 
   console.log(newAdvertisement);

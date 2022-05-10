@@ -11,16 +11,19 @@ import './Advertisement.scss';
 import { Button, Col, Input, Modal, Radio, Row } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import Title from 'antd/lib/typography/Title';
-import { ethers } from 'ethers';
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 import React, { useState } from 'react';
 */
+import { ethers } from 'ethers';
+
 import { Button, Card, Col, Input, Row } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { contractABI, contractAddress } from 'abi/contract';
+import { handleError, handleSuccess } from 'utils/common';
 
 const dummyAds: any[] = [
   {
@@ -93,20 +96,20 @@ const Advertisement = () => {
   };
 
   function insertAdvertisement(
-    advertisementId: any,
     date: any,
     advertisementTitle: any,
     advertisementDescription: any,
     advertisementUrl: any,
     advertisementStatus: any,
+    advertisementTokenId: string,
   ) {
     const newAdvertisement = {
-      advertisementId: advertisementId,
-      date: date,
-      advertisementTitle: advertisementTitle,
-      advertisementDescription: advertisementDescription,
-      advertisementUrl: advertisementUrl,
-      advertisementStatus: advertisementStatus,
+      date,
+      advertisementTitle,
+      advertisementDescription,
+      advertisementUrl,
+      advertisementStatus,
+      advertisementTokenId,
     };
 
     axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement);
@@ -152,8 +155,6 @@ const Advertisement = () => {
       // DECLARING THE ID OF THE NEW AD BID
       /* const advertisementId = ads[ads.length - 1].id + 1; */
 
-      const advertisementId = 5;
-
       /* setAds((prev) => [
         ...prev,
 
@@ -169,45 +170,36 @@ const Advertisement = () => {
       // VARIABLES TO INSERT INTO TABLE, ALSO INCLUDES advertisementId WHICH'S ABOVE
 
       const d = new Date();
-      const date = d.toLocaleDateString() + '\n' + d.toLocaleTimeString();
 
-      const advertisementTitle = adTitle;
-
-      const advertisementDescription = adDesc;
-
-      const advertisementUrl = adUrl;
-
-      const advertisementStatus = 'Voting in Progress';
+      const payload = {
+        date: d.toLocaleDateString() + '\n' + d.toLocaleTimeString(),
+        advertisementTitle: adTitle,
+        advertisementDescription: adDesc,
+        advertisementUrl: adUrl,
+        advertisementStatus: 'Voting in Progress',
+        advertisementTokenId: 'Token ID',
+      };
 
       // LOGGING INFO ABOUT NEW AD BID MINTING TO CONSOLE
 
       const consoleMsg =
         '**************************' +
         '\n\nYou have minted a new advertisement bid!' +
-        '\n\nAdvertisement ID: ' +
-        advertisementId +
         '\n\nAdvertisement Title: ' +
-        advertisementTitle +
+        payload.advertisementTitle +
         '\n\nAdvertisement Description: ' +
-        advertisementDescription +
+        payload.advertisementDescription +
         '\n\nAdvertisement URL: ' +
-        advertisementUrl +
+        payload.advertisementUrl +
         '\n\nAdvertisement Status: ' +
-        advertisementStatus +
+        payload.advertisementStatus +
         '\n\nDate: ' +
-        date +
+        payload.date +
         '\n\n**************************';
 
       console.log(consoleMsg);
 
-      insertAdvertisement(
-        advertisementId,
-        date,
-        advertisementTitle,
-        advertisementDescription,
-        advertisementUrl,
-        advertisementStatus,
-      );
+      mintAd(payload);
 
       /*
       =====================================================
@@ -305,7 +297,7 @@ const Advertisement = () => {
     setIsVoteApproved(e.target.value);
   }; */
 
-  /* const mintAd = async () => {
+  const mintAd = async (payload: any) => {
     try {
       const { ethereum } = window;
 
@@ -314,20 +306,39 @@ const Advertisement = () => {
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
 
       let transaction = await connectedContract.mintAd(
-        'newAd',
+        payload.advertisementUrl,
         ethers.utils.parseEther('0.00001'),
       );
 
       await transaction.wait();
       handleSuccess(transaction);
 
+      const {
+        date,
+        advertisementTitle,
+        advertisementDescription,
+        advertisementUrl,
+        advertisementStatus,
+        advertisementTokenId,
+      } = payload;
+
+      insertAdvertisement(
+        date,
+        advertisementTitle,
+        advertisementDescription,
+        advertisementUrl,
+        advertisementStatus,
+        advertisementTokenId,
+      );
+
       console.log(transaction);
-      setAdTokens([...adTokens, { description: newAd, id: adTokens.length + 1 }]);
+      // setAdTokens([...adTokens, { description: newAd, id: adTokens.length + 1 }]);
     } catch (error: any) {
       handleError(error);
     }
   };
 
+  /*
   const vote = async (id: number, val: boolean) => {
     try {
       const { ethereum } = window;
