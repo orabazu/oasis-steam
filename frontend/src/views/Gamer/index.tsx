@@ -1,6 +1,6 @@
 import './Gamer.scss';
 
-import { Col, Row } from 'antd';
+import { Button, Card, Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 const Gamer = () => {
@@ -22,24 +22,30 @@ const Gamer = () => {
     .reduce(
       (prev, curr) => prev + (curr.tokenToClaim ? curr.tokenToClaim : curr.amount),
       0,
-    );
+    )
+    .toFixed(5);
 
   const exchanged = transactions
     .filter((transaction) => transaction.transactionType === 'Swap')
-    .reduce((prev, curr) => prev + curr.amount, 0);
+    .reduce((prev, curr) => prev + curr.amount, 0)
+    .toFixed(5);
 
   const balance = earned - exchanged;
 
   return (
     <Row className="Gamer">
-      <Col span={8}>
+      <Col span={8} style={{ paddingLeft: 30 }}>
         <div className="address-info">
           <h2>My Gamer NFT</h2>
           <h3>0x7c4571600008ad0aeD614652c39884E6EE8C17aE</h3>
         </div>
 
-        <div className="account-summary">
-          <h2>My Account Summary</h2>
+        <Card
+          className="TileCard account-summary"
+          title="My Account Summary"
+          bordered={false}
+          // className="account-summary"
+        >
           <h3>
             Total TILE Received:{' '}
             <span className="account-summary__earned">{earned} TILE</span>
@@ -50,9 +56,9 @@ const Gamer = () => {
           </h3>
           <h3>
             Current Balance:{' '}
-            <span className="account-summary__balance">{balance} TILE</span>
+            <span className="account-summary__balance">{balance?.toFixed(5)} TILE</span>
           </h3>
-        </div>
+        </Card>
       </Col>
       <Col span={16}>
         <div className="transactions">

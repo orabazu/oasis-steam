@@ -1,32 +1,39 @@
 @import '../../styles/colors.scss';
 
-.address-info,
+.address-info {
+  margin: 2em;
+  margin-left: 0;
+}
+
 .transactions {
   margin: 2em;
 }
-
 .transactions__title {
-  font-size: 2.5rem;
+  font-size: 30px;
   text-align: center;
 }
 
 .account-summary {
-  padding: 15px 15px 20px 15px;
-  background: $independence;
-  border-radius: 16px;
-  margin: 1.2em 1.2em 2.4em 1.2em;
+  // padding: 15px 15px 20px 15px;
+  // background: $independence;
+  // border-radius: 16px;
+  // margin: 1.2em 1.2em 2.4em 1.2em;
 
   h2 {
-    font-size: 2rem;
+    font-size: 21px;
     text-align: center;
     color: #fff;
     margin-bottom: 0.5em;
   }
 
   h3 {
-    font-size: 1.4rem;
+    font-size: 18px;
     color: #fff;
-    margin: 1.5em 0.5em 0 0;
+    margin: 0 0.5em 1.5em 0;
+  }
+
+  h3:last-child{
+    margin-bottom: 0;
   }
 
   &__earned {
@@ -46,7 +53,7 @@
   display: flex;
   justify-content: space-around;
   list-style: none;
-  font-size: 1.4rem;
+  font-size: 20px;
   background-color: hsl(235, 18%, 39%);
   padding: 1em 0;
   margin: 0;
@@ -96,7 +103,7 @@
   }
 
   li {
-    font-size: 1.2rem;
+    font-size: 16px;
   }
 }
 
