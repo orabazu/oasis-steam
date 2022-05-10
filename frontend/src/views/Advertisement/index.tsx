@@ -305,10 +305,7 @@ const Advertisement = () => {
       const signer = provider.getSigner();
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-      let transaction = await connectedContract.mintAd(
-        payload.advertisementUrl,
-        ethers.utils.parseEther('0.00001'),
-      );
+      let transaction = await connectedContract.mintAd(payload.advertisementUrl, 86400);
 
       await transaction.wait();
       handleSuccess(transaction);
