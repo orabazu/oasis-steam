@@ -1,0 +1,39 @@
+@import '../../styles/colors.scss';
+.LeftNavigation {
+  .ExchangeCard {
+    margin-top: 20px;
+    background: linear-gradient(
+      77deg,
+      $cornflower-blue -8.72%,
+      $violet-blue 120.58%
+    ) !important;
+    svg {
+      margin: 10px 0;
+    }
+  }
+
+  p svg * {
+    color: $sky-blue-crayola !important;
+  }
+
+  .button-swap{
+    margin-top: 0;
+  }
+}
+
+.TileCard {
+  margin-top: 2em;
+  border: none;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.chosen {
+  color: #5bbddb;
+}

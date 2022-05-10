@@ -1,0 +1,170 @@
+@import '../../styles/colors.scss';
+.Governance {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+
+  img {
+    max-width: 100%;
+    height: 200px;
+    border-radius: 16px;
+    min-height: 400px;
+    object-fit: cover;
+    margin: 20px 0;
+  }
+
+  .TileCard {
+    min-height: 100px;
+    padding: 30px 20px;
+    background: $independence;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .GovernanceCard {
+    min-height: 500px;
+    padding: 30px 20px;
+    background: $independence;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+
+  }
+}
+
+.address-info {
+  margin: 2em;
+  margin-left: 0;
+}
+
+.VoteCard {
+  padding: 24px;
+  margin-bottom: 20px;
+  background: $independence;
+  border-radius: 16px;
+
+  .voteButton {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+  }
+}
+
+.accept-btn,
+.reject-btn {
+  margin-right: 0.7em;
+  align-items: center;
+  border: 0px;
+  border-radius: 16px;
+  box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 1;
+  outline: 0px;
+  height: 40px;
+  padding: 0px 16px;
+}
+
+.accept-btn {
+  background: linear-gradient(to right, #00772e, #00973a);
+}
+
+.reject-btn {
+  background: linear-gradient(to right, #832227, #cc353c);
+}
+
+// .left-col {
+//   margin-right: 10em;
+// }
+
+.right-col {
+  padding-left: 30px;
+}
+
+.col-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 1em;
+  margin-top: 30px;
+}
+
+.align-left{
+  text-align: left;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .button-fancy {
+    margin: 0
+  }
+
+  a {
+    text-decoration: none;
+    margin-left: 1.5em;
+  }
+
+  .status {
+    font-size: 18px;
+    text-align: right;
+
+    .button-fancy {
+      margin: 0 0.5em 0 0;
+    }
+
+    span {
+      margin-left: 0.4em;
+    }
+
+    .purchase-btn {
+      margin-left: 1.2em;
+      background: linear-gradient(to right, #17548d, #2a8deb);
+      color: #fff;
+    }
+  }
+}
+
+.status--green {
+  color: #00c44b;
+}
+
+.status--blue {
+  color: #2485dd;
+}
+
+.status--red {
+  color: #cc353c;
+}
+
+.voted {
+  margin-right: -12em;
+
+  span {
+    margin-left: -15em;
+  }
+}
+
+.no-ad {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.no-data-icon{
+  font-size: 50px;
+  text-align: center;
+  margin: auto;
+  padding: 20px 30px;
+  svg, svg * { color: #2485dd!important; }
+}
