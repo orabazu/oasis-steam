@@ -13,23 +13,71 @@ import { ethers } from 'ethers';
 import React, { useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
+import axios from 'axios';
+
 export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) => {
   const [accountState] = useAccountContext();
   const [tileAmount, setTileAmount] = useState<number>();
 
+  /*
+  =========
+  FUNCTIONS
+  =========
+  */
+
+  async function insertTransaction(
+    transactionID: any,
+    amount: any,
+    transactionType: any,
+    from: any,
+    to: any,
+    date: any,
+  ) {
+    const newTransaction = {
+      transactionId: transactionID,
+      date: date,
+      transactionType: transactionType,
+      from: from,
+      to: to,
+      amount: amount,
+    };
+
+    axios.post('http://localhost:3001/makeTransaction', newTransaction);
+  }
+
   const claimTile = async () => {
     try {
       const { ethereum } = window;
+
+      const testAmount = 0.001;
 
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
 
       let transaction = await connectedContract.claimTile(
-        ethers.utils.parseUnits('1.0', 'ether'),
+        ethers.utils.parseUnits(testAmount.toString(), 'ether'),
       );
 
+      const transactionType = 'Test';
+
+      const transactionID = transaction.hash;
+
+      // I'm confused about this, transaction.to seems to be the address Dominic provided,
+      // and transaction.from is my wallet address, isn't it supposed to be the other way around?
+      // For now, I'm switching them up, please correct any mistakes
+      const from = transaction.to;
+      const to = transaction.from;
+
+      const d = new Date();
+      const date = d.toLocaleDateString() + '-' + d.toLocaleTimeString();
+
+      const amount = testAmount;
+
       await transaction.wait();
+
+      insertTransaction(transactionID, amount, transactionType, from, to, date);
+
       handleSuccess(transaction);
 
       console.log(transaction);
@@ -56,7 +104,25 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
           ethers.utils.parseUnits(tileAmount.toString(), 'ether'),
         );
 
+        const transactionType = 'Swap';
+
+        const transactionID = transaction.hash;
+
+        // I'm confused about this, transaction.to seems to be the address Dominic provided,
+        // and transaction.from is my wallet address, isn't it supposed to be the other way around?
+        // For now, I'm switching them up, please correct any mistakes
+        const from = transaction.to;
+        const to = transaction.from;
+
+        const d = new Date();
+        const date = d.toLocaleDateString() + '-' + d.toLocaleTimeString();
+
+        const amount = tileAmount;
+
         await transaction.wait();
+
+        insertTransaction(transactionID, amount, transactionType, from, to, date);
+
         handleSuccess(transaction);
         console.log(transaction);
       }
@@ -157,7 +223,7 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
       </Card>
       <Card className="TileCard">
         <h2 style={{ margin: `0 0 20px 0` }}>Claim TILE</h2>
-        <p style={{ paddingBottom: 10 }}>Claim 1 tile tokens for testing</p>
+        <p style={{ paddingBottom: 10 }}>Claim 0.001 TILE tokens for testing</p>
         <Button block size="large" className="button-fancy" onClick={claimTile}>
           {'Claim Tiles'}
         </Button>

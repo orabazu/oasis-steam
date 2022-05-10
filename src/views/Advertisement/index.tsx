@@ -21,7 +21,7 @@ import Title from 'antd/lib/typography/Title';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-const initialAds: any[] = [
+const dummyAds: any[] = [
   {
     title: 'Books',
     description: 'Love books? Explore our collection',
@@ -63,18 +63,20 @@ const Advertisement = () => {
   ===========
   */
 
-  const [ads, setAds] = useState(initialAds);
+  const [ads, setAds] = useState(dummyAds);
 
   const [adTitle, setAdTitle] = useState('');
   const [adDesc, setAdDesc] = useState('');
   const [adUrl, setAdUrl] = useState('');
+
+  const [dummyState, setDummyState] = useState(0);
 
   useEffect(() => {
     fetchAds();
     /* fetch('/getAdvertisements')
       .then((res) => res.json())
       .then((json) => setAds(json)); */
-  }, []);
+  }, [dummyState]);
 
   /*
   =========
@@ -107,6 +109,7 @@ const Advertisement = () => {
     };
 
     axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement);
+    setDummyState((prev) => prev + 1);
 
     /* 
     const client = await MongoClient.connect(url, {
@@ -232,16 +235,24 @@ const Advertisement = () => {
     }
   };
 
-  const purchaseAd = (id: any) => {
-    setAds((prev) =>
-      prev.map((ad) => (ad.id === id ? { ...ad, status: 'Published' } : ad)),
-    );
+  const updateAdvertisement = (id: any, newStatus: any) => {
+    const update = {
+      id: id,
+      newStatus: newStatus,
+    };
 
+    axios.post('http://localhost:3001/updateAdvertisement', update);
+    setDummyState((prev) => prev + 1);
+  };
+
+  const purchaseAd = (id: any) => {
     // FOR DATABASE CONNECTION, PLEASE CHECK OUT THE BELOW COMMENT
 
     const idToModify = id;
 
     const newAdvertisementStatus = 'Published';
+
+    updateAdvertisement(idToModify, newAdvertisementStatus);
 
     // LOGGING INFO ABOUT CHANGING AD STATUS TO CONSOLE
 
@@ -415,20 +426,20 @@ const Advertisement = () => {
         </Title>
         {ads.length > 0 ? (
           <div>
-            {[...ads].reverse().map((ads) => (
-              <div className="VoteCard" key={ads._id}>
+            {[...ads].reverse().map((ad) => (
+              <div className="VoteCard" key={ad._id}>
                 <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
-                  {ads.advertisementTitle}
+                  {ad.advertisementTitle}
                 </h2>
                 <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
-                  {ads.advertisementDescription}
+                  {ad.advertisementDescription}
                 </p>
                 <div className="card-bottom">
                   <a
                     target="_blank"
                     className="ant-btn button-fancy"
-                    href={ads.advertisementUrl}
-                    title={ads.advertisementUrl}
+                    href={ad.advertisementUrl}
+                    title={ad.advertisementUrl}
                     rel="noreferrer"
                   >
                     Link
@@ -437,21 +448,21 @@ const Advertisement = () => {
                     Status:
                     <span
                       className={`status--${
-                        ads.advertisementStatus === 'Accepted'
+                        ad.advertisementStatus === 'Accepted'
                           ? 'green'
-                          : ads.advertisementStatus === 'Rejected'
+                          : ad.advertisementStatus === 'Rejected'
                           ? 'red'
-                          : ads.advertisementStatus === 'Published'
+                          : ad.advertisementStatus === 'Published'
                           ? 'blue'
                           : 'dull'
                       }`}
                     >
-                      {ads.advertisementStatus}
+                      {ad.advertisementStatus}
                     </span>
-                    {ads.advertisementStatus === 'Accepted' && (
+                    {ad.advertisementStatus === 'Accepted' && (
                       <button
                         className="ant-btn purchase-btn"
-                        onClick={() => purchaseAd(ads.id)}
+                        onClick={() => purchaseAd(ad._id)}
                       >
                         Purchase
                       </button>

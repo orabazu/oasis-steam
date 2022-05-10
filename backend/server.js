@@ -13,6 +13,7 @@ app.use(express.json());
 mongoose.connect(connectionString);
 
 app.use('/', require('./routes/adRoute'));
+app.use('/', require('./routes/transactionRoute'));
 
 app.listen(3001, () => {
   console.log('Express server running on 3001');

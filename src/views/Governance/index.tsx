@@ -12,53 +12,9 @@ import React from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
 import Logo from '../../assets/tile3.png'; */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const ads = [
-  {
-    title: 'Books',
-    description: 'Love books? Explore our collection',
-    id: 1,
-    url: 'https://www.hachettebookgroup.com/genre/fiction/romance-fiction/',
-    status: 'Voting in Progress',
-    vote: '',
-  },
-  {
-    title: 'Real Estate',
-    description: '9000+ homes for sale in New York',
-    id: 2,
-    url: 'https://www.sothebysrealty.com/eng/sales/new-york-ny-usa',
-
-    status: 'Accepted',
-    vote: 'Reject',
-  },
-  {
-    title: 'Oasis Network',
-
-    description: 'Oasis Network. Next frontier in privacy-enabled blockchain',
-    id: 3,
-    url: 'https://oasisprotocol.org/',
-
-    status: 'Published',
-    vote: 'Reject',
-  },
-  {
-    title: 'Rental Homes',
-    description: 'You have a home anywhere in the world',
-    id: 4,
-    url: 'https://airbnb.com',
-
-    status: 'Rejected',
-    vote: 'Accept',
-  },
-  {
-    title: 'Crypto Payments',
-    description: 'Tap crypto’s potential with a pioneer in global payments',
-    id: 5,
-    url: 'https://usa.visa.com/solutions/crypto.html',
-    status: 'Voting in Progress',
-  },
-];
+import axios from 'axios';
 
 const Governance = () => {
   // const [accountState] = useAccountContext();
@@ -105,10 +61,35 @@ const Governance = () => {
     }
   }; */
 
+  const [ads, setAds] = useState<any[]>([]);
+
+  const [dummyState, setDummyState] = useState(0);
+
+  useEffect(() => {
+    fetchAds();
+  }, [dummyState]);
+
+  const fetchAds = async () => {
+    const res = await fetch('http://localhost:3001/getAdvertisements');
+    const json = await res.json();
+
+    setAds(json);
+  };
+
+  const updateAdvertisement = (id: any, newStatus: any) => {
+    const update = {
+      id: id,
+      newStatus: newStatus,
+    };
+
+    axios.post('http://localhost:3001/updateAdvertisement', update);
+    setDummyState((prev) => prev + 1);
+  };
+
   return (
     <Row className="Governance">
-      <Col>
-        {/* <div className="GovernanceCard">
+      {/* <Col>
+        <div className="GovernanceCard">
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
             Governance
           </Title>
@@ -125,7 +106,7 @@ const Governance = () => {
           </Button>
         </div> */}
 
-        {/* <div className="TileCard">
+      {/* <div className="TileCard">
           <Title level={2} style={{ margin: `0 0 20px 0` }}>
             Claim TILE
           </Title>
@@ -133,8 +114,8 @@ const Governance = () => {
           <Button block size="large" className="button-fancy" onClick={claimTile}>
             {'Claim Tiles'}
           </Button>
-        </div> */}
-      </Col>
+        </div>
+      </Col> */}
 
       <Col span={9} className="left-col">
         <div className="address-info">
@@ -143,77 +124,88 @@ const Governance = () => {
         </div>
 
         <h2 className="col-title">Vote for Advertisements</h2>
-        {ads
-          .filter((ad) => ad.status === 'Voting in Progress')
-          .map((ads) => (
-            <div className="VoteCard" key={ads.id}>
-              <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
-              <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
-              <div className="card-bottom">
-                <a
-                  target="_blank"
-                  className="ant-btn button-fancy"
-                  href={ads.url}
-                  title={ads.url}
-                  rel="noreferrer"
-                >
-                  Link
-                </a>
-                <div className="vote">
-                  <button className="accept-btn">Accept</button>
-                  <button className="reject-btn">Reject</button>
+        {ads.filter((ad) => ad.advertisementStatus === 'Voting in Progress').length ===
+        0 ? (
+          <h2 className="no-ad">No advertisement bid minted yet</h2>
+        ) : (
+          ads
+            .filter((ad) => ad.advertisementStatus === 'Voting in Progress')
+            .map((ad) => (
+              <div className="VoteCard" key={ad._id}>
+                <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+                  {ad.advertisementTitle}
+                </h2>
+                <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
+                  {ad.advertisementDescription}
+                </p>
+                <div className="card-bottom">
+                  <a
+                    target="_blank"
+                    className="ant-btn button-fancy"
+                    href={ad.advertisementUrl}
+                    title={ad.advertisementUrl}
+                    rel="noreferrer"
+                  >
+                    Link
+                  </a>
+                  <div className="vote">
+                    <button
+                      className="accept-btn"
+                      onClick={() => updateAdvertisement(ad._id, 'Accepted')}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="reject-btn"
+                      onClick={() => updateAdvertisement(ad._id, 'Rejected')}
+                    >
+                      Reject
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+        )}
       </Col>
 
       <Col span={9} className="right-col">
         <h2 className="col-title">Vote History</h2>
-        {ads
-          .filter((ad) => ad.status !== 'Voting in Progress')
-          .map((ads) => (
-            <div className="VoteCard" key={ads.id}>
-              <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>{ads.title}</h2>
-              <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>{ads.description}</p>
+        {[...ads]
+          .reverse()
+          .filter((ad) => ad.advertisementStatus !== 'Voting in Progress')
+          .map((ad) => (
+            <div className="VoteCard" key={ad._id}>
+              <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+                {ad.advertisementTitle}
+              </h2>
+              <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
+                {ad.advertisementDescription}
+              </p>
               <div className="card-bottom">
                 <a
                   target="_blank"
                   className="ant-btn button-fancy"
-                  href={ads.url}
-                  title={ads.url}
+                  href={ad.advertisementUrl}
+                  title={ad.advertisementUrl}
                   rel="noreferrer"
                 >
                   Link
                 </a>
-                <div className="status voted">
-                  Voted:{' '}
-                  <span
-                    className={`status--${
-                      ads.vote === 'Accept'
-                        ? 'green'
-                        : ads.vote === 'Reject'
-                        ? 'red'
-                        : 'dull'
-                    }`}
-                  >
-                    {ads.vote}
-                  </span>
-                </div>
+
                 <div className="status">
                   Status:
                   <span
                     className={`status--${
-                      ads.status === 'Accepted'
+                      ad.advertisementStatus === 'Accepted'
                         ? 'green'
-                        : ads.status === 'Rejected'
+                        : ad.advertisementStatus === 'Rejected'
                         ? 'red'
-                        : ads.status === 'Published'
+                        : ad.advertisementStatus === 'Published'
                         ? 'blue'
                         : 'dull'
                     }`}
                   >
-                    {ads.status}
+                    {ad.advertisementStatus}
                   </span>
                 </div>
               </div>

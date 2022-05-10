@@ -1,7 +1,6 @@
 @import '../../styles/colors.scss';
 .Governance {
   display: flex;
-  align-items: center;
   justify-content: center;
   margin: 20px 0;
 
@@ -82,7 +81,6 @@
 
 .left-col {
   margin-right: 10em;
-  margin-top: -4.5em;
 }
 
 .right-col {
@@ -148,4 +146,10 @@
   span {
     margin-left: -15em;
   }
+}
+
+.no-ad {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 3em;
 }

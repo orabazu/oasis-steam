@@ -25,6 +25,18 @@ router.route('/bidAdvertisement').post((req, res) => {
   newAdvertisement.save();
 });
 
+router.route('/updateAdvertisement').post((req, res) => {
+  const filter = { _id: req.body.id };
+
+  const update = { advertisementStatus: req.body.newStatus };
+
+  Advertisement.findOneAndUpdate(filter, update, (error, data) => {
+    if (error) {
+      console.log(error);
+    } else console.log(data);
+  });
+});
+
 router.route('/getAdvertisements').get((req, res) => {
   Advertisement.find().then((foundAds) => res.json(foundAds));
 });
