@@ -5,12 +5,29 @@ import { contractABI, contractAddress } from 'abi/contract';
 import { Button } from 'antd';
 import Text from 'antd/lib/typography/Text';
 import { ethers } from 'ethers';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
 import axios from 'axios';
 
 export const Footer = () => {
+  const [recentAd, setRecentAd] = useState<any>();
+
+  useEffect(() => {
+    fetchRecentAd();
+  }, []);
+
+  const fetchRecentAd = async () => {
+    const res = await fetch('http://localhost:3001/getAdvertisements');
+    const json = await res.json();
+
+    const publishedAds = json.filter((ad: any) => ad.advertisementStatus === 'Published');
+
+    console.log(publishedAds);
+
+    setRecentAd(publishedAds[publishedAds.length - 1]);
+  };
+
   const mintAdvertiserToken = async () => {
     try {
       const { ethereum } = window;
@@ -75,21 +92,21 @@ export const Footer = () => {
       <Button icon={<DollarCircleFilled />} type="primary" onClick={mintAdvertiserToken}>
         Buy Tile
       </Button>
-      <div className="oasis-ad" style={{ textAlign: 'center' }}>
-        <h3 style={{ fontWeight: 600 }}>
-          Oasis Network. Next frontier in privacy-enabled blockchain
-        </h3>
-        <a
-          href="https://oasisprotocol.org/"
-          title="https://oasisprotocol.org/"
-          target="_blank"
-          style={{ margin: '.5em 0 -.7em 0' }}
-          className="ant-btn button-fancy"
-          rel="noreferrer"
-        >
-          Click to explore
-        </a>
-      </div>
+      {recentAd && (
+        <div className="oasis-ad" style={{ textAlign: 'center' }}>
+          <h3 style={{ fontWeight: 600 }}>{recentAd.advertisementTitle}</h3>
+          <a
+            href={recentAd.advertisementUrl}
+            title={recentAd.advertisementUrl}
+            target="_blank"
+            style={{ margin: '.5em 0 -.7em 0' }}
+            className="ant-btn button-fancy"
+            rel="noreferrer"
+          >
+            Click to explore
+          </a>
+        </div>
+      )}
       <Text>2022 © TILE Gaming</Text>
     </div>
   );

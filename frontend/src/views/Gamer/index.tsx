@@ -68,7 +68,7 @@ const Gamer = () => {
               </ul>
               <section className="transactions__rows">
                 {transactions &&
-                  transactions.map((transaction: any) => (
+                  [...transactions].reverse().map((transaction: any) => (
                     <article
                       className={`row ${
                         transaction.transactionType === 'Swap' ? 'row--red' : 'row--green'
@@ -78,6 +78,7 @@ const Gamer = () => {
                       <ul className="shown-content">
                         <li>
                           <a
+                            target="_blank"
                             className="oasis-link"
                             href={`https://testnet.oasisscan.com/paratimes/transactions/${transaction.transactionId}?runtime=00000000000000000000000000000000000000000000000072c8215e60d5bca7`}
                           >
