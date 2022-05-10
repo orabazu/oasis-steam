@@ -20,6 +20,7 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
   const [accountState] = useAccountContext();
   const [tileAmount, setTileAmount] = useState<number>();
   const [direction, setDirection] = useState<'TR' | 'RT'>('TR');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function insertTransaction(
     transactionID: any,
@@ -189,11 +190,14 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
   };
 
   const swap = async () => {
+    setIsLoading(true);
     if (direction === 'TR') {
       await approve();
       await swapTileForRose();
+      setIsLoading(false);
     } else {
       await swapRoseForTile();
+      setIsLoading(false);
     }
   };
 
@@ -274,7 +278,7 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
         <Button
           block
           size="large"
-          loading={accountState.isLoading}
+          loading={accountState.isLoading || isLoading}
           className="button-fancy"
           onClick={swap}
         >
@@ -283,7 +287,13 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
       </Card>
       <Card className="ExchangeCard" bordered={false} title="Claim TILE">
         <p style={{ paddingBottom: 10 }}>Claim 0.001 TILE tokens for testing</p>
-        <Button block size="large" className="button-fancy" onClick={claimTile}>
+        <Button
+          block
+          size="large"
+          className="button-fancy"
+          onClick={claimTile}
+          loading={accountState.isLoading || isLoading}
+        >
           {'Claim Tiles'}
         </Button>
       </Card>
