@@ -8,11 +8,10 @@
   display: flex;
   justify-content: space-between;
 
-  padding: 20px 30px;
+  padding: 0 30px;
 
   .AdvertisementCard {
     // min-height: 500px;
-    padding: 30px 20px;
     background: $independence;
     border-radius: 16px;
 
@@ -34,7 +33,7 @@
   }
 
   .VoteCard {
-    padding: 15px 15px;
+    padding: 24px 24px;
     margin-bottom: 20px;
     background: $independence;
     border-radius: 16px;
@@ -48,7 +47,7 @@
 }
 
 .advertisement-card-label {
-  font-size: 1.5rem;
+  font-size: 18px;
 }
 
 .button-fancy {
@@ -71,11 +70,11 @@
   }
 
   .status {
-    font-size: 1.2rem;
+    font-size: 18px;
     text-align: right;
 
     .button-fancy {
-      margin: 0 0.5em 0 1.5em;
+      margin: 0 0.5em 0 0;
     }
 
     span {
@@ -105,7 +104,7 @@
 .address-info {
   margin-bottom: 4em !important;
   h2 {
-    font-size: 2rem;
+    font-size: 18px;
     font-weight: 600;
     color: #fff;
   }

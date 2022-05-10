@@ -16,10 +16,11 @@ import React, { useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 import React, { useState } from 'react';
 */
-import { Button, Col, Input, Row } from 'antd';
+import { Button, Card, Col, Input, Row } from 'antd';
 import Title from 'antd/lib/typography/Title';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 const dummyAds: any[] = [
   {
@@ -63,7 +64,7 @@ const Advertisement = () => {
   ===========
   */
 
-  const [ads, setAds] = useState(dummyAds);
+  const [ads, setAds] = useState([]);
 
   const [adTitle, setAdTitle] = useState('');
   const [adDesc, setAdDesc] = useState('');
@@ -367,31 +368,29 @@ const Advertisement = () => {
 
   return (
     <Row className="Advertisement">
-      <Col span={10} style={{ marginTop: '-1em' }}>
+      <Col span={10}>
         <div className="address-info">
           <h2>My Advertiser NFT</h2>
           {ads.length > 0 ? (
             <h3 className="address">0x7AaE98b06E576c34507488C0a5F1085AFffb2869</h3>
           ) : (
-            <h3 className="no-nft">
-              Please mint an advertisement bid to get your Advertiser NFT
-            </h3>
+            <>
+              <div className="flex flex-center">
+                <ExclamationCircleOutlined className="no-data-icon" />
+              </div>
+              <h2 className="no-ad">
+                Please mint an advertisement bid to get your Advertiser NFT
+              </h2>
+            </>
           )}
         </div>
-        <div className="AdvertisementCard">
-          <Title level={2} style={{ margin: `0 0 20px 0` }}>
-            Add new advertisement bid
-          </Title>
-          {/* <Input
-            placeholder="Put your advertisement here"
-            style={{ margin: `0 0 20px 0` }}
-            value={newAd}
-            onChange={(e) => setNewAd(e.target.value)}
-          ></Input>
-          <Button block size="large" className="button-fancy" onClick={mintAd}>
-            {'Mint Ad'}
-          </Button> */}
-          <h3 className="advertisement-card-label">Advertisement Title</h3>
+
+        <Card
+          className="AdvertisementCard"
+          title="Add new advertisement bid"
+          bordered={false}
+        >
+          <h3 className="advertisement-card-label">Title</h3>
           <Input
             placeholder="Title"
             style={{ margin: `0 0 20px 0` }}
@@ -399,7 +398,7 @@ const Advertisement = () => {
             onChange={(e) => setAdTitle(e.target.value)}
           ></Input>
 
-          <h3 className="advertisement-card-label">Advertisement Description</h3>
+          <h3 className="advertisement-card-label">Description</h3>
           <Input
             placeholder="Description"
             style={{ margin: `0 0 20px 0` }}
@@ -407,7 +406,7 @@ const Advertisement = () => {
             onChange={(e) => setAdDesc(e.target.value)}
           ></Input>
 
-          <h3 className="advertisement-card-label">Advertisement URL</h3>
+          <h3 className="advertisement-card-label">URL</h3>
           <Input
             placeholder="URL"
             style={{ margin: `0 0 20px 0` }}
@@ -418,9 +417,13 @@ const Advertisement = () => {
           <Button block size="large" className="button-fancy" onClick={addNewAd}>
             {'Mint Ad Bid'}
           </Button>
-        </div>
+        </Card>
+
+        {/* <Button block size="large" className="button-fancy" onClick={mintAd}>
+            {'Mint Ad'}
+          </Button>  */}
       </Col>
-      <Col span={12} style={{ padding: `0 0 0 20px`, marginTop: '1em' }}>
+      <Col span={12} style={{ padding: `0 0 0 20px`, marginTop: '2em' }}>
         <Title level={2} style={{ margin: `0 0 30px 0`, textAlign: 'center' }}>
           My Advertisements
         </Title>
@@ -428,7 +431,7 @@ const Advertisement = () => {
           <div>
             {[...ads].reverse().map((ad) => (
               <div className="VoteCard" key={ad._id}>
-                <h2 style={{ textAlign: 'center', fontSize: '1.5rem' }}>
+                <h2 style={{ textAlign: 'center', fontSize: '1.3rem' }}>
                   {ad.advertisementTitle}
                 </h2>
                 <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
@@ -485,7 +488,9 @@ const Advertisement = () => {
             ))}
           </div>
         ) : (
-          <h2 className="no-bid">No advertisement bid minted yet</h2>
+          <>
+            <h2 className="no-ad">No bid</h2>
+          </>
         )}
       </Col>
       {/* <Modal

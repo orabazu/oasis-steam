@@ -51,16 +51,14 @@ const Header = () => {
               <NavLink to="/" className="heading">
                 TILE
               </NavLink>
-
               <NavLink to="/gamer" className="menuItem">
                 Gamer
               </NavLink>
-
-              <NavLink to="/governance" className="menuItem">
-                Governor
-              </NavLink>
               <NavLink to="/advertiser" className="menuItem">
                 Advertiser
+              </NavLink>
+              <NavLink to="/governance" className="menuItem">
+                Governor
               </NavLink>
             </>
           }

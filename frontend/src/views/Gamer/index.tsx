@@ -34,7 +34,7 @@ const Gamer = () => {
 
   return (
     <Row className="Gamer">
-      <Col span={8} style={{ paddingLeft: 30 }}>
+      <Col span={10} style={{ paddingLeft: 30 }}>
         <div className="address-info">
           <h2>My Gamer NFT</h2>
           <h3>0x7c4571600008ad0aeD614652c39884E6EE8C17aE</h3>
@@ -60,7 +60,7 @@ const Gamer = () => {
           </h3>
         </Card>
       </Col>
-      <Col span={16}>
+      <Col span={14}>
         <div className="transactions">
           <h2 className="transactions__title">Transaction History</h2>
           <div className="table">

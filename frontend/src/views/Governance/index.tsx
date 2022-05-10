@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './Governance.scss';
 
-import { Col, Row } from 'antd';
+import { Alert, Col, Row } from 'antd';
 /* import { contractABI, contractAddress } from 'abi/contract';
 import { Button, Col, Row } from 'antd';
 import Text from 'antd/lib/typography/Text';
@@ -15,6 +15,7 @@ import Logo from '../../assets/tile3.png'; */
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 const Governance = () => {
   // const [accountState] = useAccountContext();
@@ -117,16 +118,21 @@ const Governance = () => {
         </div>
       </Col> */}
 
-      <Col span={9} className="left-col">
+      <Col span={10} className="left-col">
         <div className="address-info">
           <h2>My Governor NFT</h2>
           <h3>0xfdfdF8eE730732d422A19f466E31cC4CE054db59</h3>
         </div>
 
-        <h2 className="col-title">Vote for Advertisements</h2>
+        <h2 className="col-title align-left">Vote for Advertisements</h2>
         {ads.filter((ad) => ad.advertisementStatus === 'Voting in Progress').length ===
         0 ? (
-          <h2 className="no-ad">No advertisement bid minted yet</h2>
+          <>
+            <div className="flex flex-center">
+              <ExclamationCircleOutlined className="no-data-icon" />
+            </div>
+            <h2 className="no-ad">No advertisement bid minted yet</h2>
+          </>
         ) : (
           ads
             .filter((ad) => ad.advertisementStatus === 'Voting in Progress')
@@ -168,7 +174,7 @@ const Governance = () => {
         )}
       </Col>
 
-      <Col span={9} className="right-col">
+      <Col span={12} className="right-col">
         <h2 className="col-title">Vote History</h2>
         {[...ads]
           .reverse()

@@ -18,10 +18,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Header />}>
               <Route index element={<Dashboard />} />
-              <Route path="governance" element={<Governance />} />
               <Route path="gamer" element={<Gamer />} />
-
               <Route path="advertiser" element={<Advertisement />} />
+              <Route path="governance" element={<Governance />} />
             </Route>
             <Route
               path="*"

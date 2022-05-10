@@ -1,9 +1,8 @@
 @import '../../styles/colors.scss';
 .Governance {
   display: flex;
-  justify-content: center;
-  margin: 20px 0;
-
+  justify-content: space-between;
+  padding: 0 30px;
   .TileCard {
     min-height: 100px;
     padding: 30px 20px;
@@ -34,11 +33,12 @@
 }
 
 .address-info {
-  margin: 1em;
+  margin: 2em;
+  margin-left: 0;
 }
 
 .VoteCard {
-  padding: 15px 15px;
+  padding: 24px;
   margin-bottom: 20px;
   background: $independence;
   border-radius: 16px;
@@ -79,18 +79,23 @@
   background: linear-gradient(to right, #832227, #cc353c);
 }
 
-.left-col {
-  margin-right: 10em;
-}
+// .left-col {
+//   margin-right: 10em;
+// }
 
 .right-col {
-  margin-left: 10em;
+  padding-left: 30px;
 }
 
 .col-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 30px;
   margin-bottom: 1em;
+  margin-top: 30px;
+}
+
+.align-left{
+  text-align: left;
 }
 
 .card-bottom {
@@ -100,7 +105,7 @@
   align-items: center;
 
   .button-fancy {
-    margin: 0 0 0 0.5em;
+    margin: 0
   }
 
   a {
@@ -109,11 +114,11 @@
   }
 
   .status {
-    font-size: 1.2rem;
+    font-size: 18px;
     text-align: right;
 
     .button-fancy {
-      margin: 0 0.5em 0 1.5em;
+      margin: 0 0.5em 0 0;
     }
 
     span {
@@ -149,7 +154,15 @@
 }
 
 .no-ad {
-  font-size: 1.8rem;
+  font-size: 18px;
   text-align: center;
-  margin-top: 3em;
+  margin-top: 10px;
+}
+
+.no-data-icon{
+  font-size: 50px;
+  text-align: center;
+  margin: auto;
+  padding: 20px 30px;
+  svg, svg * { color: #2485dd!important; }
 }
