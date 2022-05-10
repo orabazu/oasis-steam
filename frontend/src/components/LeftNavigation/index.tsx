@@ -249,13 +249,15 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
 
         <br></br>
 
-        <Button
-          type="default"
-          shape="circle"
-          icon={<ArrowDownOutlined />}
-          size={`large`}
-          onClick={changeDirection}
-        />
+        <div className="flex flex-center">
+          <Button
+            className="button-fancy button-swap"
+            shape="circle"
+            icon={<ArrowDownOutlined />}
+            size={`large`}
+            onClick={changeDirection}
+          />
+        </div>
 
         <div>
           <Title level={4} style={{ textAlign: 'left' }}>
@@ -279,8 +281,7 @@ export const LeftNavigation = ({ handleCategoryChoice, chosenCategory }: any) =>
           {accountState.account ? 'Swap' : 'Connect Wallet'}
         </Button>
       </Card>
-      <Card className="TileCard">
-        <h2 style={{ margin: `0 0 20px 0` }}>Claim TILE</h2>
+      <Card className="ExchangeCard" bordered={false} title="Claim TILE">
         <p style={{ paddingBottom: 10 }}>Claim 0.001 TILE tokens for testing</p>
         <Button block size="large" className="button-fancy" onClick={claimTile}>
           {'Claim Tiles'}
