@@ -34,6 +34,9 @@ This documentation presents details on the TILE Games dapp and project.
 
 [Back to Main GitHub Page](../README.md) | [Back to Documentation Index Page](Documentation.md)
 
+### TILE Games Main Window
+![Main Window](./doc/img/TILE_Games_Main_Window.png)
+
 ## Project Team
 
 Our team consists of professionals from varying backgrounds, united with the ethos of **creating value through innovation**.
