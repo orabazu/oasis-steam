@@ -2,6 +2,9 @@
 
 ## Frontend
 
+### TILE Games Main Window
+![Main Window](./img/TILE_Games_Main_Window.png)
+
 ### Process Flow
 
 Assumption: In the current implementation, every Player is also a potential Advertiser. So, these two menus will be displayed to all. Governor menu is displayed only to those connected wallets that have the Governor NFT.
