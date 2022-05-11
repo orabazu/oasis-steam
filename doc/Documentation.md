@@ -15,9 +15,6 @@ This documentation presents details on the TILE Games dapp and project.
 - [**Slide Deck**](https://_____) describes the project.
 - [**YouTube Video**](https://_____) is the demo video for the hackathon.
 
-Our team consists of professionals from varying backgrounds, united with the ethos of **creating value through innovation**.
-
-![TILE Games Project Team](./img/Slide19.png) 
 
 ## Index
 
@@ -36,3 +33,9 @@ Our team consists of professionals from varying backgrounds, united with the eth
 <hline></hline>
 
 [Back to Main GitHub Page](../README.md) | [Back to Documentation Index Page](Documentation.md)
+
+## Project Team
+
+Our team consists of professionals from varying backgrounds, united with the ethos of **creating value through innovation**.
+
+![TILE Games Project Team](./img/Slide19.png) 
