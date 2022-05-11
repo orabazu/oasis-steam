@@ -27,6 +27,35 @@ const dummyAds = [
     advertisementStatus: 'Voting in Progress',
     advertisementTokenId: '33',
   },
+  {
+    advertisementTitle: 'Real Estate',
+    advertisementDescription: '9000+ homes for sale in New York',
+    _id: 2,
+    advertisementUrl: 'https://www.sothebysrealty.com/eng/sales/new-york-ny-usa',
+
+    advertisementStatus: 'Accepted',
+    advertisementTokenId: '34',
+  },
+  {
+    advertisementTitle: 'Oasis Network',
+
+    advertisementDescription:
+      'Oasis Network. Next frontier in privacy-enabled blockchain',
+    _id: 3,
+    advertisementUrl: 'https://oasisprotocol.org/',
+
+    advertisementStatus: 'Published',
+    advertisementTokenId: '35',
+  },
+  {
+    advertisementTitle: 'Rental Homes',
+    advertisementDescription: 'You have a home anywhere in the world',
+    _id: 4,
+    advertisementUrl: 'https://airbnb.com',
+
+    advertisementStatus: 'Rejected',
+    advertisementTokenId: '36',
+  },
 ];
 
 const Advertisement = () => {
