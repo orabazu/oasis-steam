@@ -7,7 +7,7 @@ P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetizatio
 
 - [**TILE Games Dapp**](https://tile-gaming.vercel.app/) is running live on the cloud.
 - [**Documentation**](./doc/Documentation.md) describes the project and the dapp in detail.
-- [**Slide Deck**](https://_____) describes the project.
+- [**Slide Deck**](./doc/pdf/TILE_Games_v04g.pdf) describes the project. 
 - [**YouTube Video**](https://_____) is the demo video for the hackathon.
 
 ### TILE Games Main Window
