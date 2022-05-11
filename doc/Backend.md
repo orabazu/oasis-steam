@@ -4,7 +4,7 @@
 
 ### Smart Contracts
 
-Here are tested functionalities of **smart contracts** for transactions, as a part of [`TileManager.sol`:](https://github.com/albert-vo-crypto/oasis-steam/blob/main/contracts/TileManager.sol)
+Here are tested functionalities of **smart contracts** for transactions, as a part of [`TileManager.sol`:](https://github.com/albert-vo-crypto/tile-games/blob/main/contracts/TileManager.sol)
 
 1. mintGovernorNFT
 2. swapTileForRose
