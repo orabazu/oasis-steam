@@ -1,4 +1,4 @@
-![TILE Games Logo](./img/logo.png) 
+![TILE Games Logo](./doc/img/logo.png) 
 
 ### TILE Games
 P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetization. Users play casual games to earn TILE crypto tokens. Funding for the distributed tokens inflows from ad revenues.
