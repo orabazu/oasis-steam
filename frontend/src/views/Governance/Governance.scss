@@ -30,7 +30,6 @@
     border-radius: 16px;
     display: flex;
     flex-direction: column;
-
   }
 }
 
@@ -96,7 +95,7 @@
   margin-top: 30px;
 }
 
-.align-left{
+.align-left {
   text-align: left;
 }
 
@@ -107,7 +106,7 @@
   align-items: center;
 
   .button-fancy {
-    margin: 0
+    margin: 0;
   }
 
   a {
@@ -161,10 +160,18 @@
   margin-top: 10px;
 }
 
-.no-data-icon{
+.no-data-icon {
   font-size: 50px;
   text-align: center;
   margin: auto;
   padding: 20px 30px;
-  svg, svg * { color: #2485dd!important; }
+  svg,
+  svg * {
+    color: #2485dd !important;
+  }
+}
+
+.no-ad-vote {
+  font-size: 25px;
+  text-align: center;
 }

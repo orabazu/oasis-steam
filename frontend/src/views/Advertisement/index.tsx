@@ -7,14 +7,13 @@
 /* eslint-disable jsx-a11y/alt-text */
 import './Advertisement.scss';
 
-import { ethers } from 'ethers';
-
-import { Button, Card, Col, Input, Row } from 'antd';
-import Title from 'antd/lib/typography/Title';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { contractABI, contractAddress } from 'abi/contract';
+import { Button, Card, Col, Input, notification, Row } from 'antd';
+import Title from 'antd/lib/typography/Title';
+import axios from 'axios';
+import { BigNumber, ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
 import { handleError, handleSuccess } from 'utils/common';
 
 import gif from './../../assets/TILE_GAMES_ADVERTISER.gif';
@@ -26,6 +25,7 @@ const dummyAds = [
     _id: 1,
     advertisementUrl: 'https://www.hachettebookgroup.com/genre/fiction/romance-fiction/',
     advertisementStatus: 'Voting in Progress',
+    advertisementTokenId: '33',
   },
   {
     advertisementTitle: 'Real Estate',
@@ -34,6 +34,7 @@ const dummyAds = [
     advertisementUrl: 'https://www.sothebysrealty.com/eng/sales/new-york-ny-usa',
 
     advertisementStatus: 'Accepted',
+    advertisementTokenId: '34',
   },
   {
     advertisementTitle: 'Oasis Network',
@@ -44,6 +45,7 @@ const dummyAds = [
     advertisementUrl: 'https://oasisprotocol.org/',
 
     advertisementStatus: 'Published',
+    advertisementTokenId: '35',
   },
   {
     advertisementTitle: 'Rental Homes',
@@ -52,6 +54,7 @@ const dummyAds = [
     advertisementUrl: 'https://airbnb.com',
 
     advertisementStatus: 'Rejected',
+    advertisementTokenId: '36',
   },
 ];
 
@@ -107,8 +110,9 @@ const Advertisement = () => {
       advertisementTokenId,
     };
 
-    axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement);
-    setDummyState((prev) => prev + 1);
+    axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement).finally(() => {
+      fetchAds();
+    });
 
     /* 
     const client = await MongoClient.connect(url, {
@@ -300,28 +304,36 @@ const Advertisement = () => {
       const signer = provider.getSigner();
       const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+      connectedContract.on('AdNFTMinted', (sender: string, tokenId: BigNumber) => {
+        console.log(sender, tokenId);
+        notification.success({
+          message: 'Success',
+          description: <p>Ad NFT #{tokenId.toNumber()} is successfuly minted</p>,
+          duration: 7,
+        });
+
+        const {
+          date,
+          advertisementTitle,
+          advertisementDescription,
+          advertisementUrl,
+          advertisementStatus,
+        } = payload;
+
+        insertAdvertisement(
+          date,
+          advertisementTitle,
+          advertisementDescription,
+          advertisementUrl,
+          advertisementStatus,
+          tokenId.toNumber().toString(),
+        );
+      });
+
       let transaction = await connectedContract.mintAd(payload.advertisementUrl, 86400);
 
       await transaction.wait();
       handleSuccess(transaction);
-
-      const {
-        date,
-        advertisementTitle,
-        advertisementDescription,
-        advertisementUrl,
-        advertisementStatus,
-        advertisementTokenId,
-      } = payload;
-
-      insertAdvertisement(
-        date,
-        advertisementTitle,
-        advertisementDescription,
-        advertisementUrl,
-        advertisementStatus,
-        advertisementTokenId,
-      );
 
       console.log(transaction);
       // setAdTokens([...adTokens, { description: newAd, id: adTokens.length + 1 }]);
@@ -350,24 +362,7 @@ const Advertisement = () => {
     }
   };
 
-  const getAdState = async (id: number) => {
-    try {
-      const { ethereum } = window;
-
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-      let transaction = await connectedContract.getAdState(id);
-
-      await transaction.wait();
-      handleSuccess(transaction);
-
-      console.log(transaction);
-    } catch (error: any) {
-      handleError(error);
-    }
-  }; */
+   */
 
   return (
     <Row className="Advertisement">
@@ -438,6 +433,7 @@ const Advertisement = () => {
             {[...ads].reverse().map((ad) => (
               <div className="VoteCard" key={ad._id}>
                 <h2 style={{ textAlign: 'center', fontSize: '1.3rem' }}>
+                  {/* #{ad.advertisementTokenId} */}
                   {ad.advertisementTitle}
                 </h2>
                 <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
@@ -495,7 +491,7 @@ const Advertisement = () => {
           </div>
         ) : (
           <>
-            <h2 className="no-ad">No bid</h2>
+            <h2 className="no-ad-display">No bid</h2>
           </>
         )}
       </Col>
