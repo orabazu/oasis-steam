@@ -111,7 +111,7 @@ const Advertisement = () => {
     };
 
     axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement).finally(() => {
-      setDummyState((prev) => prev + 1);
+      fetchAds();
     });
 
     /* 
@@ -363,24 +363,6 @@ const Advertisement = () => {
   };
 
    */
-  const getAdState = async (id: any) => {
-    try {
-      const { ethereum } = window;
-
-      const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const connectedContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-      let transaction = await connectedContract.getAdState(id);
-
-      await transaction.wait();
-      handleSuccess(transaction);
-
-      console.log(transaction);
-    } catch (error: any) {
-      handleError(error);
-    }
-  };
 
   return (
     <Row className="Advertisement">
@@ -451,7 +433,8 @@ const Advertisement = () => {
             {[...ads].reverse().map((ad) => (
               <div className="VoteCard" key={ad._id}>
                 <h2 style={{ textAlign: 'center', fontSize: '1.3rem' }}>
-                  #{ad.advertisementTokenId} {ad.advertisementTitle}
+                  {/* #{ad.advertisementTokenId} */}
+                  {ad.advertisementTitle}
                 </h2>
                 <p style={{ fontSize: '1.1rem', margin: '1.5em 0' }}>
                   {ad.advertisementDescription}
