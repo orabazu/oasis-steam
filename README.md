@@ -1,3 +1,6 @@
+### TILE Games
+P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetization. Users play casual games to earn TILE crypto tokens. Funding for the distributed tokens inflows from ad revenues.
+
 ### START HERE:
 
 - [**TILE Games Dapp**](https:/_____) is running live on the cloud.
@@ -5,8 +8,9 @@
 - [**Slide Deck**](https://_____) describes the project.
 - [**YouTube Video**](https://_____) is the demo video for the hackathon.
 
-### What is TILE Games?
-P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetization. Users play casual games to earn TILE crypto tokens. Funding for the distributed tokens inflows from ad revenues.
+### Project Team
+
+![Project Team](./doc/img/Slide19.png)
 
 ### Installation
 
