@@ -10,13 +10,12 @@ P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetizatio
 - [**Slide Deck**](https://_____) describes the project.
 - [**YouTube Video**](https://_____) is the demo video for the hackathon.
 
-### Project Team
-
-![Project Team](./doc/img/Slide19.png)
-
 ### TILE Games Main Window
 ![Main Window](./doc/img/TILE_Games_Main_Window.png)
 
+### Project Team
+
+![Project Team](./doc/img/Slide19.png)
 
 ### Installation
 
