@@ -4,7 +4,7 @@
 
 ## TILE Games - Documentation
 
-[**TILE Games**](https://github.com/albert-vo-crypto/oasis-steam) is a **P2E GameFi  + Ad + DAO platform on Oasis**, with built-in governance & monetization. Users play casual games to earn TILE crypto tokens. Funding for the distributed tokens inflows from ad revenues.
+[**TILE Games**](https://github.com/albert-vo-crypto/tile-games) is a **P2E GameFi  + Ad + DAO platform on Oasis**, with built-in governance & monetization. Users play casual games to earn TILE crypto tokens. Funding for the distributed tokens inflows from ad revenues.
 
 This documentation presents details on the TILE Games dapp and project.
 
