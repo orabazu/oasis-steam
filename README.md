@@ -14,6 +14,10 @@ P2E GameFi  + Ad + DAO platform on Oasis, with built-in governance & monetizatio
 
 ![Project Team](./doc/img/Slide19.png)
 
+### TILE Games Main Window
+![Main Window](./doc/img/TILE_Games_Main_Window.png)
+
+
 ### Installation
 
 Clone the repo and run `yarn install`
