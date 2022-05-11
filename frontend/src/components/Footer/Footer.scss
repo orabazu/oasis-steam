@@ -1,0 +1,25 @@
+@import '../../styles/colors.scss';
+.Footer {
+  background: $space-cadet-2;
+  position: static;
+  height: 120px;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .oasis-ad {
+    display: flex;
+    h3 {
+      margin-top: 9px;
+      margin-right: 30px;
+      font-style: italic;
+    }
+
+    .button-fancy{
+      margin-top: 0;
+    }
+  }
+}

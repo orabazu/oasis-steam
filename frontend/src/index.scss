@@ -1,0 +1,199 @@
+@import 'antd/dist/antd.css';
+@import 'styles/colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+  font-family: 'Varela Round', sans-serif;
+}
+
+body {
+  background-color: $space-cadet;
+  *:not(.ant-typography, input, .ant-notification *, .ant-modal-content *, .status
+      *, .address-info *, .account-summary *, .hidden-content *, .chosen, .oasis-link, .ant-alert-content *) {
+    color: $white !important;
+  }
+  .ant-typography, .ant-card-head-title {
+    color: $white;
+  }
+  .ant-typography.ant-typography-secondary {
+    color: #8a8a8a;
+  }
+  .ant-modal-header *,
+  .ant-modal-body *,
+  .ant-modal-close-icon,
+  .ant-modal-close-icon svg {
+    color: $black !important;
+  }
+}
+
+.ant-notification-notice-description {
+  color: $black !important;
+}
+
+.button-color {
+  background-color: $sky-blue-crayola;
+  background: linear-gradient(
+    180deg,
+    $sky-blue-crayola -8.72%,
+    $violet-blue 120.58%
+  ) !important;
+  color: $white;
+}
+
+.button-fancy {
+  background: linear-gradient(77deg, $pinkish -8.72%, $violet-blue 120.58%) !important;
+  color: $white !important;
+}
+
+.ant-btn {
+  align-items: center;
+  border: 0px;
+  border-radius: 16px;
+  box-shadow: $primary-shadow;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  opacity: 1;
+  outline: 0px;
+  transition: background-color 0.2s ease 0s, opacity 0.2s ease 0s;
+  height: 40px;
+  padding: 0px 16px;
+}
+
+.ant-btn-primary {
+  @extend .button-color;
+
+  &:hover {
+    opacity: 0.65;
+    @extend .button-color;
+  }
+
+  &:active {
+    opacity: 0.85;
+    transform: translateY(1px);
+    box-shadow: none;
+    @extend .button-color;
+  }
+
+  &:focus {
+    @extend .button-color;
+  }
+}
+
+.btn-fancy {
+  @extend .button-fancy;
+
+  &:hover {
+    opacity: 0.65;
+    @extend .button-fancy;
+  }
+
+  &:active {
+    opacity: 0.85;
+    transform: translateY(1px);
+    box-shadow: none;
+    @extend .button-fancy;
+  }
+
+  &:focus {
+    @extend .button-fancy;
+  }
+}
+
+.ant-btn-default {
+  background: $light-gray;
+  &:hover {
+    opacity: 0.65;
+    background: $light-gray;
+    color: $black;
+  }
+
+  &:active {
+    opacity: 0.85;
+    transform: translateY(1px);
+    box-shadow: none;
+    background: $light-gray;
+    color: $black;
+  }
+
+  &:focus {
+    background: $light-gray;
+    color: $black;
+  }
+}
+
+.positive {
+  background: #b8eeaa;
+}
+
+.negative {
+  background: #fc9ca1;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 24px;
+  border: 3px solid $light-gray;
+}
+
+input,
+.ant-input-number {
+  border-radius: 14px !important;
+}
+
+.ant-input-number {
+  width: 100%;
+  * {
+    color: $black;
+  }
+}
+
+.modal-action {
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.heading {
+  background: -webkit-linear-gradient(341deg, #096dd9 30.01%, $pinkish 70.01%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 0.25rem;
+}
+
+.ant-card {
+  background: $independence;
+  border-radius: 16px;
+  // > *:not(button, button *) {
+  //   background: $independence;
+  // }
+  .ant-card-head {
+    border-radius: 16px 16px 0 0;
+    background: transparent !important;
+    border-bottom: 1px solid #47525d !important;
+  }
+  .ant-card-body {
+    border-radius: 0 0 16px 16px;
+  }
+}
+
+.ant-btn-lg {
+  height: 40px;
+}
