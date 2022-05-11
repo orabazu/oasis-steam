@@ -16,7 +16,8 @@ export const contractABI = [
  */
 
 // export const advertiserAddress = '0x7790b8300123a497f3E48d871DdF483dCB8d5722';
-export const contractAddress = '0x220B6Ca20db9Af34c2f1A0e47B747C7659523d91';
+// export const contractAddress = '0x220B6Ca20db9Af34c2f1A0e47B747C7659523d91';
+export const contractAddress = '0x215a6895EdA525B627fE4eBe8C76F9633035C406';
 export const tileTokenAddress = '0x0796f4E947EfC1F9e3798AAd155e4c0C667356Ea';
 
 export const tileABI = [
@@ -35,4 +36,5 @@ export const contractABI = [
   'function swapTileForRose(uint256 amount) public', //amount in WEI.  must approve spending of tile before calling this 'function. contract must have enough rose to swap for tile else this will fail
   'function buyTile() public payable', //Purchase tile tokens
   'function approve(address _spender, uint256 _value) public returns (bool success)', // fake approve
+  'event AdNFTMinted(address sender, uint256 tokenId)', // event
 ];
