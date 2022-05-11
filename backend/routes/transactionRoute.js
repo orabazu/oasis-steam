@@ -22,6 +22,7 @@ router.route('/makeTransaction').post((req, res) => {
   });
 
   newTransaction.save();
+  res.sendStatus(200);
 });
 
 router.route('/getTransactions').get((req, res) => {

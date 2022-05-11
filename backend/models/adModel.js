@@ -9,6 +9,6 @@ const adsSchema = {
   advertisementTokenId: String,
 };
 
-const Advertisement = mongoose.model('Advertisement', adsSchema, 'advertisementsV2');
+const Advertisement = mongoose.model('Advertisement', adsSchema, 'advertisementsNFT');
 
 module.exports = Advertisement;

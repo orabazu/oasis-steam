@@ -23,6 +23,7 @@ router.route('/bidAdvertisement').post((req, res) => {
   console.log(newAdvertisement);
 
   newAdvertisement.save();
+  res.sendStatus(200);
 });
 
 router.route('/updateAdvertisement').post((req, res) => {
@@ -33,7 +34,10 @@ router.route('/updateAdvertisement').post((req, res) => {
   Advertisement.findOneAndUpdate(filter, update, (error, data) => {
     if (error) {
       console.log(error);
-    } else console.log(data);
+    } else {
+      console.log(data);
+      res.sendStatus(200);
+    }
   });
 });
 
