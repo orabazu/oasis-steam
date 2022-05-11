@@ -81,8 +81,9 @@ const Advertisement = () => {
       advertisementTokenId,
     };
 
-    axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement);
-    setDummyState((prev) => prev + 1);
+    axios.post('http://localhost:3001/bidAdvertisement', newAdvertisement).finally(() => {
+      setDummyState((prev) => prev + 1);
+    });
 
     /* 
     const client = await MongoClient.connect(url, {
