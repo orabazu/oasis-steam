@@ -11,9 +11,13 @@ The Gamer can convert Game Points to TILE Tokens on the home page.
 
 Below are screenshots from the Crypto Shooter game:
 
-
+### Splash Screen
 ![GameB_Screen01](./img/GameB_Screen01.png)
+
+### Game Play
 ![GameB_Screen02](./img/GameB_Screen02.png)
+
+### Game Points Earned
 ![GameB_Screen03](./img/GameB_Screen03.png)
 
 
