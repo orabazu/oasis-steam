@@ -11,6 +11,12 @@ The Gamer can convert Game Points to TILE Tokens on the home page.
 
 Below are screenshots from the Crypto Shooter game:
 
+
+![GameB_Screen01](./img/GameB_Screen01.png)
+![GameB_Screen02](./img/GameB_Screen02.png)
+![GameB_Screen03](./img/GameB_Screen03.png)
+
+
 ### Further Remarks on the Built-in Games
 
 1. This is the first time, to the best of our knowledge, that a **gaming platform** is developed **with ready Oasis-themed games** in it at the moment of submission to a hackathon.
