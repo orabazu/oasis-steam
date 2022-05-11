@@ -125,7 +125,7 @@ const Governance = () => {
             <div className="flex flex-center">
               <ExclamationCircleOutlined className="no-data-icon" />
             </div>
-            <h2 className="no-ad">No advertisement bid minted yet</h2>
+            <h2 className="no-ad-vote">No advertisement bid minted yet</h2>
           </>
         ) : (
           ads

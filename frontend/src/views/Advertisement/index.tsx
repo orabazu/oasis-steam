@@ -495,7 +495,7 @@ const Advertisement = () => {
           </div>
         ) : (
           <>
-            <h2 className="no-ad">No bid</h2>
+            <h2 className="no-ad-display">No bid</h2>
           </>
         )}
       </Col>

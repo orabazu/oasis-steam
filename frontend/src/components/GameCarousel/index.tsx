@@ -30,7 +30,7 @@ const games = [
   },
   {
     category: 'Action',
-    name: 'Aim Trainer',
+    name: 'Crypto Shooter',
     description: 'Aim trainer, get better at your favorite FPS game 🏹',
     heroImage: aImg1,
     images: [aImg1, aImg2, aImg3, aImg4],
